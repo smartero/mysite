@@ -1,0 +1,9 @@
+login.form-control
+{
+    /* center form-controls */
+    div class ="mx-auto" 
+    /* style="width: 200px;" */
+    
+    /* override Bootstrap's 100% width form form controls */
+    width: auto;
+}
