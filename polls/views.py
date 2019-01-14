@@ -11,5 +11,5 @@ def register(request):
 def login(request):
     return render(request, 'polls/login.html')
 
-def map(reqest):
+def map(request):
     return render(request, 'polls/map.html')
