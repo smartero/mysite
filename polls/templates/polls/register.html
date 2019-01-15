@@ -3,6 +3,7 @@
 {% block main %}
 
 <form action="/register" method="post">
+  {% csrf_token %}
     <div class="form-group">
       <label for="username">Username</label>
       <input type="text" autocomplete="off" autofocus class="form-control" id="formGroupExampleInput" placeholder="Username">
