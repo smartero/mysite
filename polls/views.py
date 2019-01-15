@@ -1,10 +1,13 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-
+from django.contrib.auth import logout
+from django.contrib.auth import views as auth_views
+from django.contrib.auth.decorators import login_required
 
 def index(request):
     return render(request, 'polls/index.html')
 
+@login_required
 def search(request):
     return render(request, 'polls/search.html')
 
@@ -15,8 +18,17 @@ def weather(request):
     return render(request, 'polls/weather.html')
 
 def register(request):
-    return render(request, 'polls/register.html')
+    session.clear()
+    if request.method == 'POST':
+        pass
+    elif request.method == 'GET':
+        return render(request, 'polls/register.html')
 
 def login(request):
     return render(request, 'polls/login.html')
 
+# logout the user, clear the session
+def logout_view(request):
+    logout(request)
+
+def change-password(request):
