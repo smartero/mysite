@@ -1,8 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from django.contrib.auth import UserCreationForm, logout
+from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import views as auth_views
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 
 def index(request):
     return render(request, 'polls/index.html')
@@ -18,18 +19,20 @@ def weather(request):
     return render(request, 'polls/weather.html')
 
 def register(request):
-    if request.method == 'POST':
+    if request.method == 'POST':    
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data.get('username')
+            messages.success(request, f'Accounted created for {username}!')
+            return redirect('index')
+    else:
         form = UserCreationForm()
-        return render(request, 'polls/register.html', {'form': from})
-    elif request.method == 'GET':
-        return render(request, 'polls/register.html')
+    return render(request, 'polls/register.html', {'form': form})
 
 def login(request):
     return render(request, 'polls/login.html')
 
-# logout the user, clear the session
-def logout_view(request):
-    logout(request)
+
 
 def change_password(request):
     pass

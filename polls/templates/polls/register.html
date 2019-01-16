@@ -2,7 +2,7 @@
 
 {% block main %}
 
-<form action="/register" method="post">
+<form action="/polls/register/" method="post">
   {% csrf_token %}
     <div class="form-group">
       <label for="username">Username</label>
@@ -19,7 +19,7 @@
     </div>    
     <div class="form-group">
       <label for="confirmation">Confirm password</label>
-      <input type="confirmation" autocomplete="off" class="form-control" id="exampleInputPassword1" placeholder="Password">
+      <input type="password" autocomplete="off" class="form-control" id="exampleInputPassword1" placeholder="Password">
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>
