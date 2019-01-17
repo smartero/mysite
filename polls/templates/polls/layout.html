@@ -29,7 +29,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active"><a class="nav-link" href="/">Home<span class="sr-only">(current)</span></a></li>
-            <li class="nav-item"><a class="nav-link" href="/polls/search">Search</a></li>
+            <li class="nav-item"><a class="nav-link" href="/polls/offer">Offer a trip</a></li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Info
@@ -44,7 +44,7 @@
             </li>
           </ul>
           
-        {% if session.user_id %}
+        {% if request.user.is_authentificated %}
         <ul class="navbar-nav mr-auto">
                 <li class="nav-item"><a class="nav-link" href="/polls/logout">Log Out</a></li>
             </ul>

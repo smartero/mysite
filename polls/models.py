@@ -13,3 +13,6 @@ class Post(models.Model):
     updated = models.DateTimeField(default=timezone.now) #updates on current date-time
     # on_delete - delete the ost if user is deleted
     author = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.title

@@ -1,9 +1,0 @@
-main .form-control
-{
-    /* center form-controls */
-    display: inline-block;
-    width: auto;
-    
-    /* override Bootstrap's 100% width form form controls */
-    /*width: auto;*/
-}
