@@ -1,10 +1,10 @@
 {% extends 'polls/layout.html' %}
-
+{% load crispy_forms_tags %}
 {% block main %}
 <form action="/polls/register/" method="post">
   {% csrf_token %}
     <div class="form-group">
-      {{ form }}
+      {{ form|crispy }}
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>
