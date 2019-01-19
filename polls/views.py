@@ -31,16 +31,16 @@ def register(request):
 
 def login(request):
     if request.method == 'POST':
-        username = request.POST['username']
-        password = request.POST['password']
+        username = request.POST.get('username')
+        password = request.POST.get('password')
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            # Redirect to a success page - here 
+            return redirect('index')
         else:
-            message.error(request, 'Invalid login')
-    else:
-        return render(request, 'polls/login.html')
+            messages.warning(request, 'Invalid login')
+    return render(request, 'polls/login.html')
+
 
 @login_required
 def change_password(request):
