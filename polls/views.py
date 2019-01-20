@@ -4,9 +4,13 @@ from django.contrib.auth import views as auth_views, authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from . forms import UserRegisterForm
+from . models import Offer
 
 def index(request):
-    return render(request, 'polls/index.html')
+    context = {
+        'offers': Offer.objects.all()
+    }
+    return render(request, 'polls/index.html', context)
 
 @login_required
 def offer(request):

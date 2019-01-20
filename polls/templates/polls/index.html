@@ -1,5 +1,11 @@
 {% extends 'polls/layout.html' %}
 
 {% block main %}
-    <!--TODO-->
+    <h1>Offers</h1>
+    <p>{% for offer in offers %}</p>
+    <ul>
+        <li>{{ offer }}</li>
+    </ul>
+
+    {% endfor %}
 {% endblock %}
