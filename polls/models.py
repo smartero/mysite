@@ -16,4 +16,4 @@ class Offer(models.Model):
     car = models.ForeignKey(Car, on_delete=models.CASCADE, related_name='car')
 
     def __str__(self):
-        return f'{self.title}: {self.dep}, {self.to}, {self.pax}'
+        return f'{self.title}: {self.dep}, {self.to}, {self.pax} {self.car}'
