@@ -1,0 +1,16 @@
+{% extends 'polls/layout.html' %}
+
+{% block main %}
+<div class="list-group">
+    {% for offer in offers %}
+    <a href="#" class="list-group-item list-group-item-action active">
+      <div class="d-flex w-100 justify-content-between">
+        <h5 class="mb-1">{{ offer.title }}</h5>
+        <small>3 days ago</small>
+      </div>
+      <p class="mb-1">{{ offer }}</p>
+        <small>{{ offer.pax }}</small>
+    </a>
+    {% endfor %}
+</div>
+{% endblock %}

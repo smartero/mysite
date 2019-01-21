@@ -1,16 +1,29 @@
 {% extends 'polls/layout.html' %}
 
 {% block main %}
-<div class="list-group">
-    {% for offer in offers %}
-    <a href="#" class="list-group-item list-group-item-action active">
-      <div class="d-flex w-100 justify-content-between">
-        <h5 class="mb-1">{{ offer.title }}</h5>
-        <small>3 days ago</small>
-      </div>
-      <p class="mb-1">{{ offer }}</p>
-        <small>{{offer. pax}}</small>
-    </a>
-    {% endfor %}
-</div>
+<form>
+
+    <h2>
+        <p>Search for a trip</p>
+    </h2>
+        <div class="form-row align-items-center">
+          <div class="col-auto">
+            <label class="sr-only" for="inlineFormInput">From</label>
+            <input type="text" class="form-control mb-2" id="departure" placeholder="From">
+          </div>
+          <div class="col-auto">
+                <label class="sr-only" for="inlineFormInput">To</label>
+                <input type="text" class="form-control mb-2" id="destination" placeholder="To">
+          </div>
+          <div class="col-auto">
+            <div class="form-check mb-2">
+                    <label class="sr-only">Pax</label>
+                    <input type="number" size='1' min='1' class="form-control mb-2" id="pax" value='1'>
+            </div>
+          </div>
+          <div class="col-auto">
+            <button type="submit" class="btn btn-primary mb-2">Submit</button>
+          </div>
+        </div>
+      </form>
 {% endblock %}
