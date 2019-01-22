@@ -1,16 +1,31 @@
 {% extends 'polls/layout.html' %}
 
 {% block main %}
-<div class="list-group">
-    {% for offer in offers %}
-    <a href="#" class="list-group-item list-group-item-action active">
-      <div class="d-flex w-100 justify-content-between">
-        <h5 class="mb-1">{{ offer.title }}</h5>
-        <small>3 days ago</small>
-      </div>
-      <p class="mb-1">{{ offer }}</p>
-        <small>{{ offer.pax }}</small>
+<h2>
+    <p>Search for a trip</p>
+</h2>
+  {% for offer in offers %}    
+  <div class="list-group list-group-flush" id="offer">
+    <a href="" class="list-group-item list-group-item-action">{{ offer.title }}
+      <small>3 days ago</small>
     </a>
-    {% endfor %}
-</div>
+  </div>
+  {% endfor %}
+  
+  <!--Open on mouse click-->
+  <script>
+    $("#offer a" ).on('click', function() {
+      $( this ).tab('show');
+    });
+  </script>
+
+<!--
+  <ul>
+    {% for offer in offers %}
+    <li>
+      <a href='{% url "offer_details" offer.id %}'>{{ offer }}</a>
+    </li>     
+    {% endfor %}   
+</ul>
+-->
 {% endblock %}

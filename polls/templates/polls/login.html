@@ -1,16 +1,16 @@
 {% extends 'polls/layout.html' %}
-
+{% load crispy_forms_tags %}
 {% block main %}
 <form action='/polls/login/' method='post'>
   {% csrf_token %}
-  <div class="form-group">
-      <label for="username">Username</label>
-      <input type="text" autocomplete="off" autofocus class="form-control" id="username" placeholder="Username">
-    </div>
-    <div class="form-group">
-      <label for="password">Password</label>
-      <input type="password" class="form-control" id="password" placeholder="Password">
-    </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
-  </form>
+  <div class="col-md-4 mb-3">
+    {{ form|crispy }}  
+  </div>
+  <button type="submit" class="btn btn-primary">Login</button>
+</form>
+  <div class='pt-3'>
+    <small class='text-muted'>
+      Don't have an account?<a class='ml-2' href='{% url "register" %}'>Register</a>
+    </small>
+  </div>
 {% endblock %}
