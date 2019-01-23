@@ -4,12 +4,10 @@ from django.contrib.auth import views as auth_views, authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .forms import UserRegisterForm
-from .models import Offer
+from .models import Result
 
 def index(request):
     return render(request, 'polls/index.html')
-
-
 
 def register(request):
     if request.method == 'POST':    
@@ -23,29 +21,27 @@ def register(request):
         form = UserRegisterForm()
     return render(request, 'polls/register.html', {'form': form})
 
+def result(request):
+    context = {
+        'results': Result.objects.all()
+    }
+    return render(request, 'polls/results.html', context)
 
 def offer(request):
-    context = {
-        'offers': Offer.objects.all()
-    }
-    return render(request, 'polls/offer.html', context)
-
+    pass 
+    
 def offer_details(request, offer_id):
     try:
-        offer = Offer.objects.get(pk=offer_id)
-    except Offer.DoesNotExist:
+        offer = Result.objects.get(pk=offer_id)
+    except Result.DoesNotExist:
         raise Http404('Offer doesn\'t exist')
     context = {
-        'offer': offer
+        'result': result
     }
     return render(request, 'polls/offer_details.html', context)
 
 def map(request):
     return render(request, 'polls/map.html')
-
-def weather(request):
-    return render(request, 'polls/weather.html')
-
 
 @login_required
 def change_password(request):

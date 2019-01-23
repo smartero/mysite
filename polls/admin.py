@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from . models import Car, Offer
+from . models import Car, Result
 
 admin.site.register(Car)
-admin.site.register(Offer)
+admin.site.register(Result)

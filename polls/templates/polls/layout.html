@@ -2,72 +2,71 @@
 
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <!-- Required meta tags -->
-        <meta charset="utf-8"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-        <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
-        
-        <link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}">
-        <title>Travellers</title>
-    </head>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+    
+    <!--Static CSS-->
+    <link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}">
+    <title>Travellers</title>
+  </head>
   <body>
-      <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #669410;">
-          <a class="navbar-brand" href="/">
-            <!-- <img src="C:\Users\smartero\hello\project\static\logo3.svg" width="30" height="30" alt="" fill='white'> -->
-            Travellers
-        </a>
-          <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
-          </div>
-          
-          <div class="navbar-collapse collapse w-100 order-2 dual-collapse2">
-              {% if request.user.first_name is not None %}
-              <span class="navbar-text">Hello, {{ user }}</span>
-              {% endif %}
-          </div>
-          <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
-              <ul class="navbar-nav ml-auto">
-                  
-                  {% if request.user.first_name is not None %}
-                  <li class="nav-item">
-                      <a class="nav-link" href="/polls/search">Search a trip</a>
-                      <li class="nav-item">
-                      <a class="nav-link" href="/polls/offer">Offer a trip</a>
-                      </li>
-                      <li class="nav-item">
-                      <a class="nav-link" href="/polls/logout">LogOut</a>
-                    </li>
-                  </li>
-                  {% else %}
-                  
-                  
-                  <li class="nav-item">
-                      <a class="nav-link" href="/polls/register">Register</a>
-                  </li>
-                      <li class="nav-item">
-                      <a class="nav-link" href="/polls/login">LogIn</a>
-                  </li>
-                  {% endif %}
-              </ul>
-          </div>
-      </nav>
-
-
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #669410;">
+      <a class="navbar-brand" href="/">
+        <!--<img src="C:\Users\smartero\hello\project\static\images\logo3.svg" width="30" height="30" alt="" fill='white'>-->
+        Travellers
+      </a>
+    <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
+    </div>
+    
+    <div class="navbar-collapse collapse w-100 order-2 dual-collapse2">
+        {% if request.user.first_name is not None %}
+        <span class="navbar-text">Hello, {{ user }}</span>
+        {% endif %}
+    </div>
+    <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+      <ul class="navbar-nav ml-auto">
+        {% if request.user.first_name is not None %}
+          <li class="nav-item">
+            <a class="nav-link" href="/polls/search">Search a trip</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/polls/offer">Offer a trip</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" href="/polls/offer">My trips</a>
+          </li>  
+          <li class="nav-item">
+            <a class="nav-link" href="/polls/logout">LogOut</a>
+          </li>
+        {% else %}    
+          <li class="nav-item">
+            <a class="nav-link" href="/polls/register">Register</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/polls/login">LogIn</a>
+          </li>
+          {% endif %}
+      </ul>
+    </div>
+    </nav>
     <main class="container">
-        {% if messages %}
+      {% if messages %}
         {% for message in messages %}
           <div class="alert alert-{{ message.tags }}" role="alert">
             {{ message }}
           </div>
         {% endfor %}
-        {% endif %}
-        {% block main %}{% endblock %}
+      {% endif %}
+    {% block main %}{% endblock %}
     </main>
   </body>
 </html>
