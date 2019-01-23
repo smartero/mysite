@@ -14,51 +14,51 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
         
-        
-
         <link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}">
         <title>Travellers</title>
     </head>
   <body>
-    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #56248f;">
-        <a class="navbar-brand" href="/">
+      <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #669410;">
+          <a class="navbar-brand" href="/">
             <!-- <img src="C:\Users\smartero\hello\project\static\logo3.svg" width="30" height="30" alt="" fill='white'> -->
             Travellers
         </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-      
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item active"><a class="nav-link" href="/">Home<span class="sr-only">(current)</span></a></li>
-            <li class="nav-item"><a class="nav-link" href="/polls/offer">Offer a trip</a></li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Info
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="/polls/resorts">Resorts</a>
-                <a class="dropdown-item" href="/polls/map">Map</a>
-                <a class="dropdown-item" href="/polls/weather">Weather</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Something else here</a>
-              </div>
-            </li>
-          </ul>
+          <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
+          </div>
           
-        {% if request.user.is_authentificated %}
-        <ul class="navbar-nav mr-auto">
-                <li class="nav-item"><a class="nav-link" href="/polls/logout">Log Out</a></li>
-            </ul>
-        {% else %}
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item"><a class="nav-link" href="/polls/register">Register</a></li>
-                <li class="nav-item"><a class="nav-link" href="/polls/login">Log In</a></li>
-            </ul>
-        {% endif %}
-        </div>
-    </nav>
+          <div class="navbar-collapse collapse w-100 order-2 dual-collapse2">
+              {% if request.user.first_name is not None %}
+              <span class="navbar-text">Hello, {{ user }}</span>
+              {% endif %}
+          </div>
+          <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+              <ul class="navbar-nav ml-auto">
+                  
+                  {% if request.user.first_name is not None %}
+                  <li class="nav-item">
+                      <a class="nav-link" href="/polls/search">Search a trip</a>
+                      <li class="nav-item">
+                      <a class="nav-link" href="/polls/offer">Offer a trip</a>
+                      </li>
+                      <li class="nav-item">
+                      <a class="nav-link" href="/polls/logout">LogOut</a>
+                    </li>
+                  </li>
+                  {% else %}
+                  
+                  
+                  <li class="nav-item">
+                      <a class="nav-link" href="/polls/register">Register</a>
+                  </li>
+                      <li class="nav-item">
+                      <a class="nav-link" href="/polls/login">LogIn</a>
+                  </li>
+                  {% endif %}
+              </ul>
+          </div>
+      </nav>
+
+
     <main class="container">
         {% if messages %}
         {% for message in messages %}
