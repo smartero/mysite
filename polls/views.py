@@ -28,20 +28,20 @@ def result(request):
     return render(request, 'polls/results.html', context)
 
 def offer(request):
-    pass 
-    
-def offer_details(request, offer_id):
+    if request.method == 'POST':
+        form = Result(request.POST)
+    else:
+        return render(request, 'polls/offer.html')
+
+def offer_details(request, result_id):
     try:
-        offer = Result.objects.get(pk=offer_id)
+        result = Result.objects.get(pk=result_id)
     except Result.DoesNotExist:
         raise Http404('Offer doesn\'t exist')
     context = {
         'result': result
     }
     return render(request, 'polls/offer_details.html', context)
-
-def map(request):
-    return render(request, 'polls/map.html')
 
 @login_required
 def change_password(request):

@@ -28,13 +28,13 @@
     </div>
     
     <div class="navbar-collapse collapse w-100 order-2 dual-collapse2">
-        {% if request.user.first_name is not None %}
+        {% if user.is_authenticated %}
         <span class="navbar-text">Hello, {{ user }}</span>
         {% endif %}
     </div>
     <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
       <ul class="navbar-nav ml-auto">
-        {% if request.user.first_name is not None %}
+        {% if user.is_authenticated %}
           <li class="nav-item">
             <a class="nav-link" href="/polls/search">Search a trip</a>
           </li>
