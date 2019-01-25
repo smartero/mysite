@@ -37,10 +37,14 @@ class CreateOffer(CreateView):
     model = Result
     fields = ['title', 'dep', 'arr', 'pax', 'baggage', 'car', 'comment']
 
+def logout(request):
+    pass
+
 @login_required
 def profile(request):
     return render(request, 'polls/profile.html')
 
+@login_required
 def offer(request):
     pass
 
