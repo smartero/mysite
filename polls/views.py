@@ -4,10 +4,22 @@ from django.contrib.auth import views as auth_views, authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .forms import UserRegisterForm
-from .models import Result
+from .models import Result, Profile
+from django.views.generic.edit import FormView, CreateView, UpdateView, DeleteView
+from django.views.generic.list import ListView
 
 def index(request):
-    return render(request, 'polls/index.html')
+    results = Result.objects.all()
+    context = {
+        'results': results
+    }
+    return render(request, 'polls/index.html', context)
+
+class ResultListView(ListView):
+    model = Result  # what model to query
+    template_name = 'polls/index.html' # looks for template at <app>/<model>_<viewtype>.html
+    context_object_name = 'results' # as in def result
+    #ordering = ['-time']
 
 def register(request):
     if request.method == 'POST':    
@@ -19,29 +31,18 @@ def register(request):
             return redirect('index')
     else:
         form = UserRegisterForm()
-    return render(request, 'polls/register.html', {'form': form})
+        return render(request, 'polls/register.html', {'form': form})
 
-def result(request):
-    context = {
-        'results': Result.objects.all()
-    }
-    return render(request, 'polls/results.html', context)
+class CreateOffer(CreateView):
+    model = Result
+    fields = ['title', 'dep', 'arr', 'pax', 'baggage', 'car', 'comment']
+
+@login_required
+def profile(request):
+    return render(request, 'polls/profile.html')
 
 def offer(request):
-    if request.method == 'POST':
-        form = Result(request.POST)
-    else:
-        return render(request, 'polls/offer.html')
-
-def offer_details(request, result_id):
-    try:
-        result = Result.objects.get(pk=result_id)
-    except Result.DoesNotExist:
-        raise Http404('Offer doesn\'t exist')
-    context = {
-        'result': result
-    }
-    return render(request, 'polls/offer_details.html', context)
+    pass
 
 @login_required
 def change_password(request):

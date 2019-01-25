@@ -1,0 +1,25 @@
+{% extends 'polls/layout.html' %}
+{% load static %}
+{% block main %}
+<div class="content-section">
+    <div class="media">
+        <img class="rounded-circle profile-img"  src="{{ user.profile.avatar.url }}" alt=""/>
+    </div>    
+    <div class="media-body">
+        <div class="details">
+            <h2>{{ user.username }}</h2>
+            <p class="proile-info">USER ID : <span>SampleId</span></p>
+            <p class="proile-info">E-MAIL : <span>SampleId</span></p>
+            <p class="proile-info">PHONE : <span>SampleId</span></p>
+        </div>
+        <div class='my-trips'>
+            <p>MY TRIPS</p>
+            <a href="">As a driver</a><br/>
+            <a href="">As a passenger</a><br/> 
+        </div> 
+        <div class="button">
+            <input type="submit" class="profile-edit-btn" value="Edit Profile"/>
+        </div>
+    </div>
+</div>
+{% endblock %}
