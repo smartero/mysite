@@ -30,16 +30,17 @@
       
       {% for result in results %}    
         <div class="list-group list-group-flush" id="result">
-          <a href="" class="list-group-item list-group-item-action">{{ result.title }}
-            <small>{{ result.time }}</small>
-          </a>
+          <button class="list-group-item list-group-item-action">{{ result.title }}
+            <small>{{ result.time }}</small></button>
+            <p>{{ result }}</p>
+          
         </div>
         {% endfor %}
         
         <!--Open on mouse click-->
         <script>
-          $("#result a" ).on('click', function() {
-            $( this ).tab('show');
+          $("button" ).click(function() {
+            $('p').show();
           });
         </script>
       

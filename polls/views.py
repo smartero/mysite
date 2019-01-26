@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse, Http404
+from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.contrib.auth import views as auth_views, authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
@@ -7,6 +7,7 @@ from .forms import UserRegisterForm
 from .models import Result, Profile
 from django.views.generic.edit import FormView, CreateView, UpdateView, DeleteView
 from django.views.generic.list import ListView
+from django.contrib.auth.models import User
 
 def index(request):
     results = Result.objects.all()
@@ -28,7 +29,7 @@ def register(request):
             form.save()
             username = form.cleaned_data.get('username')
             messages.success(request, f'Account created for {username}!')
-            return redirect('index')
+            return HttpResponseRedirect(reverse('index'))
     else:
         form = UserRegisterForm()
         return render(request, 'polls/register.html', {'form': form})
@@ -51,3 +52,13 @@ def offer(request):
 @login_required
 def change_password(request):
     pass
+
+@login_required
+def edit_profile(request):
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        if email.is_valid():
+            User.fields['email'] = email
+            User.save()
+    else:
+        return render(request, 'polls/edit_profile.html')

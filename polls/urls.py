@@ -15,6 +15,7 @@ urlpatterns = [
     path('login/', auth_views.LoginView.as_view(template_name='polls/login.html'), name='login'),
     path('logout/', auth_views.LogoutView.as_view(template_name='polls/logout.html'), name='logout'),
     path('change_password/', auth_views.PasswordChangeView.as_view(template_name='change-password.html')),
+    path('edit_profile/', polls_views.edit_profile, name='edit_profile'),
 ]
 
 # only in DEBUG mode, url pattern for images

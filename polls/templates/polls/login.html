@@ -2,7 +2,7 @@
 {% load crispy_forms_tags %}
 {% block main %}
 
-<form action='/polls/login/' method='post'>
+<form action='{% url login %}' method='post'>
   {% csrf_token %}
   <div class="col-md-4 mb-3">
     {{ form|crispy }}  
