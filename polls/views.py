@@ -1,9 +1,9 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect,reverse
 from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.contrib.auth import views as auth_views, authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from .forms import UserRegisterForm
+from .forms import UserRegisterForm, EditProfile
 from .models import Result, Profile
 from django.views.generic.edit import FormView, CreateView, UpdateView, DeleteView
 from django.views.generic.list import ListView
@@ -56,9 +56,10 @@ def change_password(request):
 @login_required
 def edit_profile(request):
     if request.method == 'POST':
-        email = request.POST.get('email')
-        if email.is_valid():
-            User.fields['email'] = email
-            User.save()
+        form = EditProfile(request.POST)
+        return render(request, 'polls/edit_profile.html', {'form': form})
+        if form.is_valid():
+            return messages.success(request, f'Changes are saved')
     else:
-        return render(request, 'polls/edit_profile.html')
+        form = EditProfile()
+        return render(request, 'polls/edit_profile.html', {'form': form})

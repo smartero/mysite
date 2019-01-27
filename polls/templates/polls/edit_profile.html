@@ -1,29 +1,13 @@
 {% extends 'polls/layout.html' %}
-
+{% load crispy_forms_tags %}
 {% block main %}
 {% if message %}
 {{ message }}
 <form action="{% url 'edit_profile' %}" method='POST'>
     {% csrf_token %}
-    <div class="content-section">
-        <div class="media">
-            <img class="rounded-circle profile-img"  src="{{ user.profile.avatar.url }}" alt=""/>
-        </div>    
-        <div class="media-body">
-            <div class="details">
-                <h2>{{ user.username }}</h2>
-                <input name='email' type='email'/>
-            </div>
-            <div class='my-trips'>
-                <p>MY TRIPS</p>
-                <a href="">As a driver</a><br/>
-                <a href="">As a passenger</a><br/> 
-            </div> 
-            <div class="button">
-                <input type="submit" class="profile-edit-btn" id='button' value="Edit Profile"/>
-            </div>
-        </div>
-    </div>
+    <div class="col-md-4 mb-3"></div>
+    {{ form|crispy }}
+</div>
+<button type="submit" class="btn btn-primary">Submit</button>
 </form>
-<script src='/polls/js/profile.js'></script>
 {% endblock %}
