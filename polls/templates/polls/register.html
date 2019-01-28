@@ -1,16 +1,18 @@
 {% extends 'polls/layout.html' %}
+{% load crispy_forms_tags %}
 
 {% block main %}
-<form action="/polls/register/" method="post">
+<form action="{% url 'register' %}" method="post">
   {% csrf_token %}
-    <div class="col-md-4 mb-3">
-      {{ form }}
+  <div class="form-group col-md-4">
+    <div class="col">
+      {{ form|crispy }}
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
   </form>
+  <button type="submit" class="btn btn-primary">Submit</button>
   <div class='pt-3'>
-      <small class='text-muted'>
-          Already have an account?<a class='ml-2' href='{% url "login" %}'>Login</a>
-      </small>
-    </div>
+    <small class='text-muted'>
+      Already have an account?<a class='ml-2' href='{% url "login" %}'>Login</a>
+    </small>
+  </div>
 {% endblock %}

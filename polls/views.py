@@ -3,7 +3,7 @@ from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.contrib.auth import views as auth_views, authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from .forms import UserRegisterForm, EditProfile, EditAvatar
+from .forms import UserRegister, EditProfile, EditAvatar
 from .models import Result, Profile
 from django.views.generic.edit import FormView, CreateView, UpdateView, DeleteView
 from django.views.generic.list import ListView
@@ -24,19 +24,15 @@ class ResultListView(ListView):
 
 def register(request):
     if request.method == 'POST':    
-        form = UserRegisterForm(request.POST)
+        form = UserRegister(request.POST)
         if form.is_valid():
             form.save()
             username = form.cleaned_data.get('username')
             messages.success(request, f'Account created for {username}!')
             return redirect('index')
     else:
-        form = UserRegisterForm()
+        form = UserRegister()
         return render(request, 'polls/register.html', {'form': form})
-
-class CreateOffer(CreateView):
-    model = Result
-    fields = ['title', 'dep', 'arr', 'pax', 'baggage', 'car', 'comment']
 
 def logout(request):
     pass

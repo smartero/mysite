@@ -3,15 +3,13 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from .models import Profile
 
-class UserRegisterForm(UserCreationForm):
+class UserRegister(forms.Form):
     # create additional form, in () "required" by default is True
+    username = forms.CharField(label='Your name', max_length=16)
+    password = forms.CharField(widget=forms.PasswordInput())
+    conf = forms.CharField(label="Confirmation", widget=forms.PasswordInput())
     email = forms.EmailField()
-
-    class Meta:
-        # when the form is valid it influences a model User
-        model = User
-        # the fields to be shown
-        fields = ['username', 'email', 'password1', 'password2']
+    
 
 class Offer(forms.ModelForm):
     pass
