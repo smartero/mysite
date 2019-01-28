@@ -8,7 +8,7 @@
     <div class="media-body">
         <div class="details">
             <h2>{{ user.username }}</h2>
-            <p class="proile-info" id='email'><span>sample@sample.com</span></p>
+            <p class="profile-info" id='email'><span>sample@sample.com</span></p>
         </div>
         <div class='my-trips'>
             <p>MY TRIPS</p>
@@ -16,8 +16,9 @@
             <a href="">As a passenger</a><br/> 
         </div> 
         <div class="button">
-            <input type="submit" class="profile-edit-btn" id='button' value="Edit Profile"/>
-        </div>
+        <a class="btn btn-outline-primary" href="{% url 'edit_profile' %}" role="button">Edit profile</a>
+    </div>
     </div>
 </div>
+
 {% endblock %}

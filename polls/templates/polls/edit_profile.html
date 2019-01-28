@@ -1,13 +1,27 @@
 {% extends 'polls/layout.html' %}
 {% load crispy_forms_tags %}
+
 {% block main %}
+
 {% if message %}
-{{ message }}
-<form action="{% url 'edit_profile' %}" method='POST'>
+    {{ message }}
+{% endif %}
+<form action="{% url 'edit_profile' %}" method='POST' enctype="multipart/form-data">
     {% csrf_token %}
-    <div class="col-md-4 mb-3"></div>
-    {{ form|crispy }}
-</div>
-<button type="submit" class="btn btn-primary">Submit</button>
-</form>
+<div class="content-section">
+        <div class="media">
+            <img class="rounded-circle profile-img"  src="{{ user.profile.avatar.url }}" alt=""/>
+        </div>    
+        
+        <div class="media-body">
+            <div class="col-md-6 mb-3">
+                {{ p_form|crispy }}
+                {{ a_form|crispy }}
+            </div>
+            <div class="button">
+            <input class="btn btn-outline-primary" type="submit" value="Submit"></a>
+        </div>
+        </div>
+    </div>
+
 {% endblock %}

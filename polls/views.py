@@ -1,9 +1,9 @@
-from django.shortcuts import render, redirect,reverse
+from django.shortcuts import render, redirect
 from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.contrib.auth import views as auth_views, authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from .forms import UserRegisterForm, EditProfile
+from .forms import UserRegisterForm, EditProfile, EditAvatar
 from .models import Result, Profile
 from django.views.generic.edit import FormView, CreateView, UpdateView, DeleteView
 from django.views.generic.list import ListView
@@ -29,7 +29,7 @@ def register(request):
             form.save()
             username = form.cleaned_data.get('username')
             messages.success(request, f'Account created for {username}!')
-            return HttpResponseRedirect(reverse('index'))
+            return redirect('index')
     else:
         form = UserRegisterForm()
         return render(request, 'polls/register.html', {'form': form})
@@ -56,10 +56,20 @@ def change_password(request):
 @login_required
 def edit_profile(request):
     if request.method == 'POST':
-        form = EditProfile(request.POST)
-        return render(request, 'polls/edit_profile.html', {'form': form})
+        p_form = EditProfile(request.POST)
+        a_form = EditAvatar(request.POST)
+        context = {
+        'p_form': p_form,
+        'a_form': a_form
+        }
         if form.is_valid():
-            return messages.success(request, f'Changes are saved')
+            messages.success(request, f'Changes are saved')
+            return redirect('profile')
     else:
-        form = EditProfile()
-        return render(request, 'polls/edit_profile.html', {'form': form})
+        p_form = EditProfile()
+        a_form = EditAvatar()
+        context = {
+            'p_form': p_form,
+            'a_form': a_form
+        }
+        return render(request, 'polls/edit_profile.html', context)
