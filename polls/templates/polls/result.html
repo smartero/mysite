@@ -1,0 +1,46 @@
+{% extends 'polls/layout.html' %}
+
+{% block main %}
+<form>
+    <h2>
+        <p>Search for a trip</p>
+    </h2>
+        <div class="form-row">
+          <div class="col-auto">
+            <label class="sr-only" for="inlineFormInput">From</label>
+            <input type="text" class="form-control mb-2" id="departure" placeholder="From">
+          </div>
+          <div class="col-auto">
+                <label class="sr-only" for="inlineFormInput">To</label>
+                <input type="text" class="form-control mb-2" id="destination" placeholder="To">
+          </div>
+          <div class="col-auto">
+            <div class="form-check mb-2">
+                    <label class="sr-only">Pax</label>
+                    <input type="number" size='1' min='1' class="form-control mb-2" id="pax" value='1'>
+            </div>
+          </div>
+          <div class="col-auto">
+            <button type="submit" class="btn btn-primary mb-2">Submit</button>
+          </div>
+        </div>
+
+      {% for result in results %}    
+        <div class="list-group list-group-flush" id="result">
+          <button class="list-group-item list-group-item-action">{{ result.title }}
+            <small>{{ result.time }}</small></button>
+            <p style='display: none'>{{ result }}</p>
+          
+        </div>
+        {% endfor %}
+        
+        <!--Open on mouse click-->
+        <script>
+        $(document).ready(function(){
+        $("button" ).click(function() {
+            $('p').show();
+          });
+          retun false;
+        });
+        </script>
+{% endblock %}

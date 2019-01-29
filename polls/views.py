@@ -10,17 +10,8 @@ from django.views.generic.list import ListView
 from django.contrib.auth.models import User
 
 def index(request):
-    results = Result.objects.all()
-    context = {
-        'results': results
-    }
-    return render(request, 'polls/index.html', context)
+    return render(request, 'polls/index.html')
 
-class ResultListView(ListView):
-    model = Result  # what model to query
-    template_name = 'polls/index.html' # looks for template at <app>/<model>_<viewtype>.html
-    context_object_name = 'results' # as in def result
-    #ordering = ['-time']
 
 def register(request):
     if request.method == 'POST':    
@@ -32,14 +23,27 @@ def register(request):
             return redirect('index')
     else:
         form = UserRegister()
-        return render(request, 'polls/register.html', {'form': form})
+    return render(request, 'polls/register.html', {'form': form})
 
-def logout(request):
-    pass
 
 @login_required
 def profile(request):
     return render(request, 'polls/profile.html')
+
+@login_required
+def search(request):
+    results = Result.objects.all()
+    context = {
+        'results': results
+    }
+    return render(request, 'polls/rearch.html', context)
+
+class ResultListView(ListView):
+    model = Result  # what model to query
+    template_name = 'polls/search.html' # looks for template at <app>/<model>_<viewtype>.html
+    context_object_name = 'results' # as in def result
+    #ordering = ['-time']
+
 
 @login_required
 def offer(request):

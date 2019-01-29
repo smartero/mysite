@@ -36,6 +36,9 @@
     <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
       <ul class="navbar-nav ml-auto">
         {% if user.is_authenticated %}
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'search' %}">Search</a>
+          </li>
           <li class="nav-item">
             <a class="nav-link" href="{% url 'offer' %}">Offer a trip</a>
           </li>
