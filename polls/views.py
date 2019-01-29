@@ -62,7 +62,7 @@ def edit_profile(request):
         'p_form': p_form,
         'a_form': a_form
         }
-        if form.is_valid():
+        if p_form.is_valid() and a_form.is_valid():
             messages.success(request, f'Changes are saved')
             return redirect('profile')
     else:
