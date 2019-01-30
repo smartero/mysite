@@ -12,15 +12,14 @@ from django.contrib.auth.models import User
 def index(request):
     return render(request, 'polls/index.html')
 
-
 def register(request):
     if request.method == 'POST':    
         form = UserRegister(request.POST)
         if form.is_valid():
             form.save()
             username = form.cleaned_data.get('username')
-            messages.success(request, f'Account created for {username}!')
-            return redirect('index')
+            messages.success(request, f'Account created for {username}! You can log in.')
+            return redirect('login')
     else:
         form = UserRegister()
     return render(request, 'polls/register.html', {'form': form})
@@ -62,9 +61,8 @@ def edit_profile(request):
         'p_form': p_form,
         'a_form': a_form
         }
-        if p_form.is_valid() and a_form.is_valid():
-            messages.success(request, f'Changes are saved')
-            return redirect('profile')
+        messages.success(request, f'Changes are saved')
+        return redirect('profile')
     else:
         p_form = EditProfile()
         a_form = EditAvatar()

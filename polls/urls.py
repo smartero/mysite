@@ -4,7 +4,6 @@ from django.conf import settings
 from django.conf.urls.static import static
 from .views import ResultListView
 from django.contrib.auth.views import LoginView
-
 from polls import views as polls_views
 
 urlpatterns = [
