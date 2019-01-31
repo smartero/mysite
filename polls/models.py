@@ -30,7 +30,7 @@ class TripType(models.Model):
 class Result(models.Model):
     
     title = models.CharField(max_length=100)
-    trip_type = models.ForeignKey(TripType, blank=False, on_delete=models.CASCADE)
+    #trip_type = models.ForeignKey(TripType, blank=False, on_delete=models.CASCADE)
     dep_city = models.CharField(max_length=100)
     #dep_date = models.DateField(default=date.today)
     resort = models.CharField(max_length=100)
