@@ -45,12 +45,10 @@ class ResultListView(ListView):
 
 
 @login_required
-def offer(request):
+def make_offer(request):
     pass
 
-@login_required
-def change_password(request):
-    pass
+
 
 @login_required
 def edit_profile(request):

@@ -8,7 +8,7 @@ from polls import views as polls_views
 
 urlpatterns = [
     path('', polls_views.index, name='index'),
-    path('offer/', polls_views.offer, name='offer'),
+    path('make_offer/', polls_views.make_offer, name='make_offer'),
     path('register/', polls_views.register, name='register'),
     path('profile/', polls_views.profile, name='profile'),
     path('search/', ResultListView.as_view(), name='search'),
