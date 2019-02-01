@@ -3,7 +3,7 @@ from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.contrib.auth import views as auth_views, authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from .forms import UserRegister, EditProfile, EditAvatar
+from .forms import UserRegister, EditProfile, EditAvatar, MakeOffer
 from .models import Result, Profile
 from django.views.generic.edit import FormView, CreateView, UpdateView, DeleteView
 from django.views.generic.list import ListView
@@ -43,10 +43,17 @@ class ResultListView(ListView):
     context_object_name = 'results' # as in def result
     #ordering = ['-time']
 
-
 @login_required
 def make_offer(request):
-    pass
+    if request.method == 'POST':
+        form = MakeOffer(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, f'Your offer has been successfully created!')
+            return redirect('index')
+    else:
+        form = MakeOffer(request.POST)
+    return render(request, 'polls/make_offer.html', {'form': form})
 
 
 

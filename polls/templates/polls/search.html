@@ -10,48 +10,29 @@
 </h2>
 <div class='row'>
   <div class='col'>
-    <label for="type">Type</label>
-      <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-        <label class="form-check-label" for="defaultCheck1">One-day</label>
+    <h5>Type</h5>
+      <div class='radio'>
+        <label><input type="radio" name="optradio" checked>Oneway</label>
       </div>
-      <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
-        <label class="form-check-label" for="defaultCheck2">Overnight</label>
+      <div class="radio">
+        <label><input type="radio" name="optradio">Roundrip</label>
       </div>
   </div>
   <div class='col'>
-    <label for="type">Resort</label>   
+    <h5>From</h5>   
     <select class="form-control">
-      <option>Resort</option>
+      <option>select adress</option>
+    </select>    
+  </div>
+  <div class='col'>
+    <h5>To</h5>   
+    <select class="form-control">
+      <option>select adress</option>
     </select>    
   </div>
   <div class='col'>
     <label for="pax">Passengers</label>   
       <select class="form-control" id="pax">
-        <option>1</option>
-        <option>2</option>
-        <option>3</option>
-        <option>4</option>
-      </select>
-  </div>
-  <div class='col'>
-    <label for="pax">Skis</label>   
-      <select class="form-control" id="pax">
-        <option>1</option>
-        <option>2</option>
-        <option>3</option>
-        <option>4</option>
-      </select>
-      <label for="pax">Snowboards</label>   
-      <select class="form-control" id="pax">
-        <option>1</option>
-        <option>2</option>
-        <option>3</option>
-        <option>4</option>
-      </select>
-      <label for="pax">Pairs of boots</label>   
-      <select class="form-control form-control-sm" id="pax">
         <option>1</option>
         <option>2</option>
         <option>3</option>
@@ -70,7 +51,7 @@
   <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
     <h5 class="mb-1">{{ result.title }}</h5>
     <p class="mb-1">{{ result }}</small>
-    <p><small>{{ result.time }}</small></p>
+    <p><small>{{ result }}</small></p>
   </a>
 </div>
 {% endfor %}
