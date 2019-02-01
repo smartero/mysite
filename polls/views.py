@@ -4,7 +4,7 @@ from django.contrib.auth import views as auth_views, authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .forms import UserRegister, EditProfile, EditAvatar, MakeOffer
-from .models import Result, Profile
+from .models import Result
 from django.views.generic.edit import FormView, CreateView, UpdateView, DeleteView
 from django.views.generic.list import ListView
 from django.contrib.auth.models import User
@@ -54,8 +54,6 @@ def make_offer(request):
     else:
         form = MakeOffer(request.POST)
     return render(request, 'polls/make_offer.html', {'form': form})
-
-
 
 @login_required
 def edit_profile(request):

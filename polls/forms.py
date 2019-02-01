@@ -28,17 +28,12 @@ TRIP_CHOICES = (
     ('roundrip', 'Roundrip'),
 )
  
-
 class MakeOffer(forms.ModelForm):
-    title = forms.CharField(max_length=100)
-    dep_adress = forms.CharField(max_length=100)
-    #dep_date = models.DateField(default=date.today)
-    arr_adress = forms.CharField(max_length=100)
-    comment = forms.CharField(widget=forms.Textarea, max_length=200, required=False)
-    time = forms.DateTimeField(auto_now=True)
-
+    pax = forms.IntegerField(label='Passengers', min_value=1, max_value=5)
     trip_type = forms.ChoiceField(widget=forms.RadioSelect, choices=TRIP_CHOICES,)
-    pax = forms.IntegerField(min_value=1, max_value=5)
+    dep_date = forms.DateField()
+    arr_address = forms.CharField()
+    comment = forms.CharField(widget=forms.Textarea, required=False)
     class Meta:
         model = Result
-        fields = ['title', 'trip_type', 'dep_adress', 'arr_adress', 'pax', 'car', 'comment']
+        fields = ['title', 'trip_type', 'dep_address', 'arr_address', 'pax', 'car', 'comment']

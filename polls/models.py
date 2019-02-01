@@ -18,9 +18,18 @@ class Car(models.Model):
         return f'{self.your_car} {self.your_model}'
 
 
+
+
 class Result(models.Model):
+    title = models.CharField(max_length=100)
+    dep_address = models.CharField(max_length=100)
+    dep_date = models.DateField(default=timezone.now)
+    arr_address = models.CharField(max_length=100)
+    # blank=True if you wish to permit empty values in forms, as the null parameter only affects database storage
+    comment = models.CharField(max_length=200, blank=True, null=True)
     car = models.ForeignKey(Car, on_delete=models.CASCADE, related_name='car')
-    time = models.DateTimeField(auto_now=True)
+    pax = models.IntegerField(default=1)
+    created_date = models.DateField(auto_now=True)
 
     def __str__(self):
-        return f'{self.dep_adress} - {self.arr_adress}, {self.pax}, {self.car}, {self.comment}'
+        return f'{self.dep_date} {self.dep_address} - {self.arr_address}, {self.car}, {self.comment}'

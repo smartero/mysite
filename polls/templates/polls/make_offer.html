@@ -4,7 +4,14 @@
 {% block main %}
 <form method='post'>
     {% csrf_token %}
-    {{ form|crispy }}
-<input type="submit" value='Save'>
-</form>
+    <h2>
+        <p>Offer a trip</p>
+    </h2>
+        {{ form|crispy }}
+    <div class='row'>
+        <div class="col text-center">
+            <button type="submit" class="btn btn-primary mb-2">Submit</button>
+        </div>
+    </div>
+</form>   
 {% endblock %}
