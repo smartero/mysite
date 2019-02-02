@@ -9,6 +9,7 @@ class Profile(models.Model):
 
     def __str__(self):
         return f'{self.user.username} Profile'
+    
 
 class Car(models.Model):
     your_car = models.CharField(max_length=20)
@@ -16,9 +17,6 @@ class Car(models.Model):
 
     def __str__(self):
         return f'{self.your_car} {self.your_model}'
-
-
-
 
 class Result(models.Model):
     title = models.CharField(max_length=100)

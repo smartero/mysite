@@ -4,7 +4,7 @@ from django.contrib.auth import views as auth_views, authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .forms import UserRegister, EditProfile, EditAvatar, MakeOffer
-from .models import Result
+from .models import Result, Profile
 from django.views.generic.edit import FormView, CreateView, UpdateView, DeleteView
 from django.views.generic.list import ListView
 from django.contrib.auth.models import User
@@ -16,6 +16,7 @@ def register(request):
     if request.method == 'POST':    
         form = UserRegister(request.POST)
         if form.is_valid():
+            
             form.save()
             username = form.cleaned_data.get('username')
             messages.success(request, f'Account created for {username}! You can log in.')
