@@ -34,17 +34,16 @@ def profile(request):
 
 @login_required
 def search(request):
-    results = Result.objects.all()
+    results = Result.objects.order_by('-created_date')
     context = {
         'results': results
     }
-    return render(request, 'polls/rearch.html', context)
+    return render(request, 'polls/search.html', context)
 
-class ResultListView(ListView):
-    model = Result  # what model to query
-    template_name = 'polls/search.html' # looks for template at <app>/<model>_<viewtype>.html
-    context_object_name = 'results' # as in def result
-    #ordering = ['-time']
+@login_required
+def details(request, result_id):
+    result = Result.objects.filter(id=result_id).first()
+    return HttpResponseRedirect(request, 'polls/details/<int:>', {'result': result})
 
 @login_required
 def make_offer(request):

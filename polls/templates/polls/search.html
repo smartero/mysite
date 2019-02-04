@@ -1,10 +1,7 @@
 {% extends 'polls/layout.html' %}
 
 {% block main %}
-<style>input[type='form-check'] {
-  transform: scale(2);
-}
-</style>
+
 <h2>
   <p>Search for a trip</p>
 </h2>
@@ -20,24 +17,15 @@
   </div>
   <div class='col'>
     <h5>From</h5>   
-    <select class="form-control">
-      <option>select adress</option>
-    </select>    
+      <input type="text" placeholder='select adress'>
   </div>
   <div class='col'>
     <h5>To</h5>   
-    <select class="form-control">
-      <option>select adress</option>
-    </select>    
+    <input type="text" placeholder='select adress'>
   </div>
   <div class='col'>
     <label for="pax">Passengers</label>   
-      <select class="form-control" id="pax">
-        <option>1</option>
-        <option>2</option>
-        <option>3</option>
-        <option>4</option>
-      </select>
+    <input type="number" min='1' max='4' class="form-control mb-2" id="pax" value='1'>
   </div> 
 </div>
 <div class='row'>
@@ -49,9 +37,9 @@
 {% for result in results %}    
 <div class="list-group list-group-flush">
   <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-    <h5 class="mb-1">{{ result.title }}</h5>
-    <p class="mb-1">{{ result }}</small>
-    <p><small>{{ result }}</small></p>
+    <h5 class="mb-1" href=" {% url 'details' result.id %}">{{ result.title }}</h5>
+    <p class="mb-1">{{ result.created_date }}</small>
+    <p><small>{{ result.dep_address }} - {{ result.arr_address}}</small></p>
   </a>
 </div>
 {% endfor %}

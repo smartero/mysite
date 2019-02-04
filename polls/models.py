@@ -19,6 +19,7 @@ class Car(models.Model):
         return f'{self.your_car} {self.your_model}'
 
 class Result(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=100)
     dep_address = models.CharField(max_length=100)
     dep_date = models.DateField(default=timezone.now)

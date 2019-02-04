@@ -1,6 +1,11 @@
 {% extends 'polls/layout.html' %}
 {% load crispy_forms_tags %}
 
+<style>
+    #map{
+        height=100%;
+    }
+</style>
 {% block main %}
 <form method='post'>
     {% csrf_token %}
