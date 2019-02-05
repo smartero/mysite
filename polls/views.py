@@ -10,6 +10,9 @@ from django.views.generic.list import ListView
 from django.contrib.auth.models import User
 
 def index(request):
+    if request.method == 'POST':
+        messages.info(request, f'Please login')
+        return redirect('login')
     return render(request, 'polls/index.html')
 
 def register(request):
@@ -21,7 +24,7 @@ def register(request):
             u = User.objects.filter(username=username).last()
             profile = Profile.objects.create(user=u)
             profile.save()
-            messages.success(request, f'Account created for {username}! You can log in.')
+            messages.success(request, f'Account created for {username}! You can log in now')
             return redirect('login')
     else:
         form = UserRegister()
@@ -34,7 +37,7 @@ def profile(request):
 
 @login_required
 def search(request):
-    results = Result.objects.order_by('-created_date')
+    results = Result.objects.all()
     context = {
         'results': results
     }
@@ -50,11 +53,13 @@ def make_offer(request):
     if request.method == 'POST':
         form = MakeOffer(request.POST)
         if form.is_valid():
-            form.save()
+            result = form.save(commit=False)
+            result.user = request.user
+            result.save()
             messages.success(request, f'Your offer has been successfully created!')
             return redirect('index')
     else:
-        form = MakeOffer(request.POST)
+        form = MakeOffer()
     return render(request, 'polls/make_offer.html', {'form': form})
 
 @login_required
