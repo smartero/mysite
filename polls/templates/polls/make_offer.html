@@ -2,8 +2,15 @@
 {% load crispy_forms_tags %}
 
 <style>
+    /* size of the div with map */
     #map{
         height:100%;
+    }
+    /* optional, makes the sample page fill the window*/
+    html, body {
+        height: 100%;
+        margin: 100%;
+        padding: 100%;
     }
 </style>
 {% block main %}
@@ -12,7 +19,15 @@
     <h2>
         <p>Offer a trip</p>
     </h2>
+    <div class="col">
         {{ form.as_p }}
+    </div>
+    <div class="row">
+    <div id="map" style="width: 600px; height: 400px"></div>
+    </div>
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=<ваш API-ключ>&lang=ru_RU" type="text/javascript">
+    </script>
+    
     <div class='row'>
         <div class="col text-center">
             <button type="submit" class="btn btn-primary mb-2">Submit</button>
