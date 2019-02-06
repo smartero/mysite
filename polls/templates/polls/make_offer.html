@@ -1,19 +1,17 @@
 {% extends 'polls/layout.html' %}
 {% load crispy_forms_tags %}
 
-<style>
-    /* size of the div with map */
-    #map{
-        height:100%;
-    }
-    /* optional, makes the sample page fill the window*/
-    html, body {
-        height: 100%;
-        margin: 100%;
-        padding: 100%;
-    }
-</style>
 {% block main %}
+<script src="https://api-maps.yandex.ru/2.1/?apikey=<515f3159-bfbe-4a5b-9067-a36951149219>&lang=ru_RU" type="text/javascript"></script>
+<script type="text/javascript">
+ymaps.ready(init);
+function init(){
+    var myMap = new ymaps.Map("map",{
+        center:[55.76, 37.64],
+        zoom: 7
+    });
+}
+</script>
 <form method='post'>
     {% csrf_token %}
     <h2>
@@ -24,10 +22,7 @@
     </div>
     <div class="row">
     <div id="map" style="width: 600px; height: 400px"></div>
-    </div>
-    <script src="https://api-maps.yandex.ru/2.1/?apikey=<ваш API-ключ>&lang=ru_RU" type="text/javascript">
-    </script>
-    
+    </div>    
     <div class='row'>
         <div class="col text-center">
             <button type="submit" class="btn btn-primary mb-2">Submit</button>
