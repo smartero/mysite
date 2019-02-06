@@ -2,16 +2,32 @@
 {% load crispy_forms_tags %}
 
 {% block main %}
-<script src="https://api-maps.yandex.ru/2.1/?apikey=<515f3159-bfbe-4a5b-9067-a36951149219>&lang=ru_RU" type="text/javascript"></script>
+<script src="https://api-maps.yandex.ru/2.1/?apikey=<515f3159-bfbe-4a5b-9067-a36951149219>&lang=en_US" type="text/javascript"></script>
 <script type="text/javascript">
 ymaps.ready(init);
+
 function init(){
+
     var myMap = new ymaps.Map("map",{
         center:[55.76, 37.64],
-        zoom: 7
+        controls: ['largeMapDefaultSet'],
+        zoom: 12
     });
 }
 </script>
+<div id="search">
+<script>
+    function init(){
+        var inputSearch = new ymaps.control.SearchControl({
+        options: {
+            // Пусть элемент управления будет
+            // в виде поисковой строки.
+            size: 'large' 
+        }
+    }),
+    }
+</script>
+</div>
 <form method='post'>
     {% csrf_token %}
     <h2>
