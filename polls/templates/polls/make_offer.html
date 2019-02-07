@@ -3,7 +3,6 @@
 
 {% block main %}
 <script src="https://api-maps.yandex.ru/2.1/?apikey=<515f3159-bfbe-4a5b-9067-a36951149219>&lang=en_US" type="text/javascript"></script>
-
 <script>
 ymaps.ready(init);
 function init(){
@@ -15,37 +14,34 @@ function init(){
     var suggestView1 = new ymaps.SuggestView('dep');
     var suggestView2 = new ymaps.SuggestView('arr');    
 }
-
 </script>
 
 <form method='post'>
     {% csrf_token %}
+    <div class="container">
     <h2>
         <p>Offer a trip</p>
     </h2>
+    
     <div class="row">
-        <input id="title" type="text" placeholder="title">
+        <label for="{{ form.title.id_for_label }}">Title:</label>
         {{ form.title }}
     </div>
     <div class="row">
-        {{ form.dep_address }}
-    </div>
-    <div class="row">
-        {{ form.arr_address}}
-    </div>
-    
-        
-        <div class="row">
-                <input id="dep" type="search">
-    
+            <label for="{{ form.dep_address.id_for_label }}">Departure from:</label>
+            <input id="dep" name="dep_address" type="search">
         </div>
+    
+
     <div class="row">
-    <div id="map" style="width: 600px; height: 400px"></div>
+        <div id="map" style="width: 600px; height: 400px"></div>
     </div>    
     <div class='row'>
         <div class="col text-center">
             <button type="submit" class="btn btn-primary mb-2">Submit</button>
         </div>
     </div>
+</div>
 </form>   
+
 {% endblock %}
