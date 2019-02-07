@@ -3,39 +3,42 @@
 
 {% block main %}
 <script src="https://api-maps.yandex.ru/2.1/?apikey=<515f3159-bfbe-4a5b-9067-a36951149219>&lang=en_US" type="text/javascript"></script>
-<script type="text/javascript">
+
+<script>
 ymaps.ready(init);
-
 function init(){
-
     var myMap = new ymaps.Map("map",{
         center:[55.76, 37.64],
         controls: ['largeMapDefaultSet'],
         zoom: 12
     });
+    var suggestView1 = new ymaps.SuggestView('dep');
+    var suggestView2 = new ymaps.SuggestView('arr');    
 }
+
 </script>
-<div id="search">
-<script>
-    function init(){
-        var inputSearch = new ymaps.control.SearchControl({
-        options: {
-            // Пусть элемент управления будет
-            // в виде поисковой строки.
-            size: 'large' 
-        }
-    }),
-    }
-</script>
-</div>
+
 <form method='post'>
     {% csrf_token %}
     <h2>
         <p>Offer a trip</p>
     </h2>
-    <div class="col">
-        {{ form.as_p }}
+    <div class="row">
+        <input id="title" type="text" placeholder="title">
+        {{ form.title }}
     </div>
+    <div class="row">
+        {{ form.dep_address }}
+    </div>
+    <div class="row">
+        {{ form.arr_address}}
+    </div>
+    
+        
+        <div class="row">
+                <input id="dep" type="search">
+    
+        </div>
     <div class="row">
     <div id="map" style="width: 600px; height: 400px"></div>
     </div>    
