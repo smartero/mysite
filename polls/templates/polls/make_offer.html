@@ -27,6 +27,15 @@ function init(){
         <label for="{{ form.title.id_for_label }}">Title:</label>
         {{ form.title }}
     </div>
+    <script>
+        $(document).ready(function() {
+            $( "#dep_date" ).datepicker();
+        });
+    </script>
+    <div class="row">
+        <label for="{{ form.dep_date.id_for_label }}">Departure date:</label>
+        <input id="dep_date" name="dep_date" type="search" autocomplete="off">
+    </div>    
     <div class="row">
         <label for="{{ form.dep_address.id_for_label }}">Departure from:</label>
         <input id="dep_address" name="dep_address" type="search">

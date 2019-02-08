@@ -31,9 +31,7 @@ TRIP_CHOICES = (
 class MakeOffer(forms.ModelForm):
     pax = forms.IntegerField(label='Passengers', min_value=1, max_value=5)
     #trip_type = forms.ChoiceField(widget=forms.RadioSelect, choices=TRIP_CHOICES,)
-    dep_date = forms.DateField(input_formats=['%d/%m/%Y', '%d.%m.%Y', '%d-%m-%Y'])
-    arr_address = forms.CharField()
     comment = forms.CharField(widget=forms.Textarea, required=False)
     class Meta:
         model = Result
-        fields = ['title', 'dep_date', 'dep_address', 'arr_address', 'pax', 'comment']
+        fields = ['title', 'pax', 'comment']

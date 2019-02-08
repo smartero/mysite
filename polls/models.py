@@ -31,4 +31,4 @@ class Result(models.Model):
     created_date = models.DateField(auto_now=True)
 
     def __str__(self):
-        return f'{self.dep_date} {self.dep_address} - {self.arr_address}, {self.car}, {self.comment}'
+        return f'{self.dep_date} {self.dep_address} - {self.arr_address}, {self.comment}'
