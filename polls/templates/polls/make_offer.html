@@ -11,8 +11,8 @@ function init(){
         controls: ['largeMapDefaultSet'],
         zoom: 12
     });
-    var suggestView1 = new ymaps.SuggestView('dep');
-    var suggestView2 = new ymaps.SuggestView('arr');    
+    var suggestView1 = new ymaps.SuggestView('dep_address');
+    var suggestView2 = new ymaps.SuggestView('arr_address');    
 }
 </script>
 
@@ -28,11 +28,21 @@ function init(){
         {{ form.title }}
     </div>
     <div class="row">
-            <label for="{{ form.dep_address.id_for_label }}">Departure from:</label>
-            <input id="dep" name="dep_address" type="search">
-        </div>
-    
-
+        <label for="{{ form.dep_address.id_for_label }}">Departure from:</label>
+        <input id="dep_address" name="dep_address" type="search">
+    </div>
+    <div class="row">
+        <label for="{{ form.arr_address.id_for_label }}">Arrival to:</label>
+        <input id="arr_address" name="arr_address" type="search">
+    </div>
+    <div class="row">
+        <label for="{{ form.pax.id_for_label }}">Passengers:</label>
+        {{ form.pax }}
+    </div>
+    <div class="row">
+        <label for="{{ form.comment.id_for_label }}">Comment:</label>
+        {{ form.comment }}
+    </div>
     <div class="row">
         <div id="map" style="width: 600px; height: 400px"></div>
     </div>    

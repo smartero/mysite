@@ -26,7 +26,7 @@ class Result(models.Model):
     arr_address = models.CharField(max_length=100)
     # blank=True if you wish to permit empty values in forms, as the null parameter only affects database storage
     comment = models.CharField(max_length=200, blank=True, null=True)
-    car = models.ForeignKey(Car, on_delete=models.CASCADE, related_name='car')
+    #car = models.ForeignKey(Car, on_delete=models.CASCADE, related_name='car')
     pax = models.IntegerField(default=1)
     created_date = models.DateField(auto_now=True)
 
