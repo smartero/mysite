@@ -3,19 +3,13 @@
 
 {% block main %}
 <script src="https://api-maps.yandex.ru/2.1/?apikey=<515f3159-bfbe-4a5b-9067-a36951149219>&lang=en_US" type="text/javascript"></script>
-<script>
+<script type='text/javascript'>
 ymaps.ready(init);
 function init(){
-    var myMap = new ymaps.Map("map",{
-        center:[55.76, 37.64],
-        controls: ['largeMapDefaultSet'],
-        zoom: 12
-    });
-    var suggestView1 = new ymaps.SuggestView('dep_address');
+    var suggestView1 = new ymaps.SuggestView('dep_address');    
     var suggestView2 = new ymaps.SuggestView('arr_address');    
-}
+};
 </script>
-
 <form method='post'>
     {% csrf_token %}
     <div class="container">
@@ -38,23 +32,20 @@ function init(){
     </div>    
     <div class="row">
         <label for="{{ form.dep_address.id_for_label }}">Departure from:</label>
-        <input id="dep_address" name="dep_address" type="search">
+        <input id="dep_address" name="dep_address" type="search" autocomplete="off">
     </div>
     <div class="row">
         <label for="{{ form.arr_address.id_for_label }}">Arrival to:</label>
         <input id="arr_address" name="arr_address" type="search">
     </div>
     <div class="row">
-        <label for="{{ form.pax.id_for_label }}">Passengers:</label>
-        {{ form.pax }}
+        <label for="{{ form.seats.id_for_label }}">Passengers:</label>
+        {{ form.seats }}
     </div>
     <div class="row">
         <label for="{{ form.comment.id_for_label }}">Comment:</label>
         {{ form.comment }}
     </div>
-    <div class="row">
-        <div id="map" style="width: 600px; height: 400px"></div>
-    </div>    
     <div class='row'>
         <div class="col text-center">
             <button type="submit" class="btn btn-primary mb-2">Submit</button>
