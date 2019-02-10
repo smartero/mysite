@@ -1,31 +1,38 @@
 {% extends 'polls/layout.html' %}
 
 {% block main %}
-
+<script src="https://api-maps.yandex.ru/2.1/?apikey=<515f3159-bfbe-4a5b-9067-a36951149219>&lang=en_US" type="text/javascript"></script>
+  <script type='text/javascript'>
+  ymaps.ready(init);
+  function init(){
+      var suggestView1 = new ymaps.SuggestView('dep_address');    
+      var suggestView2 = new ymaps.SuggestView('arr_address');    
+  };
+  </script>
 <h2>
   <p>Search for a trip</p>
 </h2>
-<div class='col'>
-    <h5>Type</h5>
-      <div class='radio'>
-        <label><input type="radio" name="optradio" checked>Oneway</label>
-      </div>
-      <div class="radio">
-        <label><input type="radio" name="optradio">Roundrip</label>
-      </div>
-  </div> 
   <div class='col'>
-    <h5>From</h5>   
-      <input type="text" placeholder='select adress'>
+    <label for="{{ form.dep_address.id_for_label }}">From:</label>   
+    <input id="dep_address" name="dep_address" type="text" autocomplete="off">
   </div>
 
   <div class='col'>
-    <h5>To</h5>   
-    <input type="text" placeholder='select adress'>
+    <label for="{{ form.arr_address.idfor_label }}">To:</label>   
+    <input id="arr_address" name="arr_address" type="search" autocomplete="off">
+  </div>
+  <script>
+      $(document).ready(function() {
+          $( "#dep_date" ).datepicker();
+      });
+  </script>
+  <div class='col'>
+    <label for="{{ form.dep_date.id_for_label }}">Date:</label>
+    <input id="dep_date" name="dep_date" autocomplete="off">
   </div>
   <div class='col'>
-    <label for="pax">Passengers</label>   
-    <input type="number" min='1' max='4' class="form-control mb-2" id="pax" value='1'>
+    <label for="passengers">Passengers:</label>
+    <input id="passengers" type="number" min='1' max='4'>
   </div> 
 
 
@@ -41,6 +48,7 @@
     <h5 class="mb-1">{{ result.title }}</h5>
     <p class="mb-1">{{ result.created_date }}</small>
     <p><small>{{ result.dep_address }} - {{ result.arr_address}}</small></p>
+    <p><small>Reservations: {{ reservations }}</small></p>
   </a>
 </div>
 {% endfor %}
