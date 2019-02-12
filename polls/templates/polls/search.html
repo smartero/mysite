@@ -13,15 +13,10 @@
   document.addEventListener('DOMContentLoaded', function() {
       document.querySelector('#pax').addEventListener('keyup', function(){
       let input = parseInt(document.querySelector('#pax').value);
-      let li = document.getElementsByTagName('li');
+      let li = document.querySelectorAll('ul li');
       for (i = 0; i < li.length; i++) {
         let number = parseInt(li[i].innerHTML);
-        if (number < input) {
-          li[i].style.display = 'none';
-        }
-        else {
-          li[i].style.display = '';
-        };
+        li[i].style.display = (number < input ? 'none': '');
       };
     });
     });
