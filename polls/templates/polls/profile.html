@@ -1,8 +1,11 @@
 {% extends 'polls/layout.html' %}
 
 {% block main %}
+{% load static %}
+
 <div class="content-section">
     <div class="media">
+        <!-- resource for static files src={% polls/images/some.img %} -->
         <img class="rounded-circle profile-img"  src="{{ user.profile.avatar.url }}" alt=""/>
     </div>    
     <div class="media-body">

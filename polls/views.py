@@ -38,13 +38,8 @@ def profile(request):
 @login_required
 def search(request):
     results = Result.objects.all()
-    id = []
-    for result in results:
-        id.append(result.id)
-    reservations = len(id)
     context = {
-        'results': results,
-        'reservations': reservations
+        'results': results
     }
     return render(request, 'polls/search.html', context)
 

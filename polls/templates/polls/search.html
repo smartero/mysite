@@ -2,24 +2,39 @@
 
 {% block main %}
 <script src="https://api-maps.yandex.ru/2.1/?apikey=<515f3159-bfbe-4a5b-9067-a36951149219>&lang=en_US" type="text/javascript"></script>
-  <script type='text/javascript'>
+<script type='text/javascript'>
   ymaps.ready(init);
   function init(){
       var suggestView1 = new ymaps.SuggestView('dep_address');    
       var suggestView2 = new ymaps.SuggestView('arr_address');    
   };
   </script>
-<h2>
-  <p>Search for a trip</p>
-</h2>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+      document.querySelector('#pax').addEventListener('keyup', function(){
+      let input = parseInt(document.querySelector('#pax').value, 10);
+      let li = document.getElementsByTagName('li');
+      for (let i = 0; i < li.length; i++) {
+        let number = parseInt(li[i].innerHTML, 10);
+        if (number < input) {
+          li[i].style.display = 'none';
+        }
+        else {
+          li[i].style.display = '';
+        };
+      };
+    });
+    });
+  </script>
+  <h5>Search for a trip</h5>
   <div class='col'>
-    <label for="{{ form.dep_address.id_for_label }}">From:</label>   
-    <input id="dep_address" name="dep_address" type="text" autocomplete="off">
+    <label for="dep_address">From:</label>   
+    <input id="dep_address" type="search" autocomplete="off">
   </div>
 
   <div class='col'>
-    <label for="{{ form.arr_address.idfor_label }}">To:</label>   
-    <input id="arr_address" name="arr_address" type="search" autocomplete="off">
+    <label for="arr_address">To:</label>   
+    <input id="arr_address" type="search" autocomplete="off">
   </div>
   <script>
       $(document).ready(function() {
@@ -27,30 +42,17 @@
       });
   </script>
   <div class='col'>
-    <label for="{{ form.dep_date.id_for_label }}">Date:</label>
-    <input id="dep_date" name="dep_date" autocomplete="off">
+    <label for="date">Date:</label>
+    <input id="dep_date" autocomplete="off">
   </div>
   <div class='col'>
-    <label for="passengers">Passengers:</label>
-    <input id="passengers" type="number" min='1' max='4'>
-  </div> 
+      <label for="">Passengers:</label>
+      <input id="pax" autocomplete="off">
+    </div>
 
-
-<div class='row'>
-  <div class="col text-center">
-    <button type="submit" class="btn btn-primary mb-2">Submit</button>
-  </div>
-</div>
-
-{% for result in results %}    
-<div class="list-group list-group-flush">
-  <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-    <h5 class="mb-1">{{ result.title }}</h5>
-    <p class="mb-1">{{ result.created_date }}</small>
-    <p><small>{{ result.dep_address }} - {{ result.arr_address}}</small></p>
-    <p><small>Reservations: {{ reservations }}</small></p>
-  </a>
-</div>
+<ul class='a'>
+{% for result in results %}
+<li>{{result.seats }}</li>
 {% endfor %}
-
+</ul>
 {% endblock %}
