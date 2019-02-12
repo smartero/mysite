@@ -12,10 +12,10 @@
 <script>
   document.addEventListener('DOMContentLoaded', function() {
       document.querySelector('#pax').addEventListener('keyup', function(){
-      let input = parseInt(document.querySelector('#pax').value, 10);
+      let input = parseInt(document.querySelector('#pax').value);
       let li = document.getElementsByTagName('li');
-      for (let i = 0; i < li.length; i++) {
-        let number = parseInt(li[i].innerHTML, 10);
+      for (i = 0; i < li.length; i++) {
+        let number = parseInt(li[i].innerHTML);
         if (number < input) {
           li[i].style.display = 'none';
         }
