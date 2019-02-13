@@ -52,9 +52,6 @@ def details(request, result_id):
 def make_offer(request):
     if request.method == 'POST':
         form = MakeOffer(request.POST)
-        form.dep = request.POST.get('dep_address')
-        form.dep_date = request.POST.get('dep_date')
-        form.arr = request.POST.get('arr_address')
         if form.is_valid():
             result = form.save(commit=False)
             result.user = request.user

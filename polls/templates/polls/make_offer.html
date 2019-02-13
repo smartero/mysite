@@ -39,7 +39,7 @@ function init(){
         <input id="arr_address" name="arr_address" type="search">
     </div>
     <div class="row">
-        <label for="{{ form.seats.id_for_label }}">Free seats:</label>
+        <label for="{{ form.seats.id_for_label }}">Seats:</label>
         {{ form.seats }}
     </div>
     <div class="row">
@@ -53,5 +53,60 @@ function init(){
     </div>
 </div>
 </form>   
-
+<form>
+    {% csrf_token %}
+        <h2>
+            <p>Offer a trip</p>
+        </h2>
+        
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="{{ form.title.id_for_label }}">Title</label>
+        <input type="text" class="form-control" id="title" placeholder="Title" value='{{form.title.value}}'>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="inputPassword4">Password</label>
+        <input type="text" class="form-control" id="inputPassword4" placeholder="Password">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputAddress">Address</label>
+      <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+    </div>
+    <div class="form-group">
+      <label for="inputAddress2">Address 2</label>
+      <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="inputCity">City</label>
+        <input type="text" class="form-control" id="inputCity">
+      </div>
+      <div class="form-group col-md-4">
+        <label for="inputState">State</label>
+        <select id="inputState" class="form-control">
+          <option selected>Choose...</option>
+          <option>...</option>
+        </select>
+      </div>
+      <div class="form-group col-md-2">
+        <label for="inputZip">Zip</label>
+        <input type="text" class="form-control" id="inputZip">
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="gridCheck">
+        <label class="form-check-label" for="gridCheck">
+          Check me out
+        </label>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary"></button>
+</form>
+<form>
+    <div class='container'>
+  {% crispy form %}
+</div>
+</form>
 {% endblock %}
