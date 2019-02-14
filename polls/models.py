@@ -22,7 +22,7 @@ class Result(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=100)
     dep_address = models.CharField(max_length=100)
-    dep_date = models.DateTimeField(default=timezone.now)
+    dep_date = models.DateTimeField()
     arr_address = models.CharField(max_length=100)
     # blank=True if you wish to permit empty values in forms, as the null parameter only affects database storage
     comment = models.CharField(max_length=200, blank=True, null=True)

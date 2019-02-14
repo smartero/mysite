@@ -41,26 +41,18 @@ class MakeOffer(forms.ModelForm):
         self.helper = FormHelper()
         self.helper.layout = Layout(
             Fieldset(
-                '',     
-                    Field('title', css_class='form-group'),
+                '',
+                    Field('title', css_class='form-group', id='title'),
+                    Field('dep_address', css_class='form-group', id='dep_address'),
+                    Field('arr_address', css_class='form-group', id='arr_address'),
                     Div(
-                        Div(Field('dep_address', css_class='form-control'),
-                        css_class='form-group col-md-6'),
-                        Div(Field('arr_address', css_class='form-control'),
-                        css_class='form-group col-md-6'
-                        ),
+                        Div('dep_date', css_class='form-group col', css_id='dep_date'),
+                        Div('seats', css_class='form-group col-md-auto', css_id='seats'),
                         css_class='form-row'),
-                     Div(
-                        Div(Field('dep_date', css_class='form-control'),
-                        css_class='form-group col-md-6'),
-                        Div(Field('seats', css_class='form-control'),
-                        css_class='form-group col-md-6'
-                        ),
-                        css_class='form-row'),
-                    Field('comment', css_class='form-group')
+                    Field('comment', css_class='form-group', css_rows='3', id='comment')
             ),
             ButtonHolder(
-                Submit('submit', 'Post an offer', css_class='btn btn-primary')
+                Submit('submit', 'Post an offer', css_class='btn btn-primary'),
             )
         )
         super(MakeOffer,self).__init__(*args, **kwargs)
