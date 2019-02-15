@@ -30,9 +30,9 @@ TRIP_CHOICES = (
 )
  
 class MakeOffer(forms.ModelForm):
-    seats = forms.IntegerField(label='Seats', min_value=1, max_value=4)
+    seats = forms.IntegerField(label='Seats', min_value=1, max_value=4, initial=1)
     #trip_type = forms.ChoiceField(widget=forms.RadioSelect, choices=TRIP_CHOICES,)
-    comment = forms.CharField(widget=forms.Textarea, required=False)
+    comment = forms.CharField(widget=forms.Textarea(attrs={'rows': '4'}), required=False)
     class Meta:
         model = Result
         fields = '__all__'
@@ -40,19 +40,22 @@ class MakeOffer(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         self.helper = FormHelper()
         self.helper.layout = Layout(
-            Fieldset(
-                '',
-                    Field('title', css_class='form-group', id='title'),
-                    Field('dep_address', css_class='form-group', id='dep_address'),
-                    Field('arr_address', css_class='form-group', id='arr_address'),
-                    Div(
-                        Div('dep_date', css_class='form-group col', css_id='dep_date'),
-                        Div('seats', css_class='form-group col-md-auto', css_id='seats'),
-                        css_class='form-row'),
-                    Field('comment', css_class='form-group', css_rows='3', id='comment')
-            ),
-            ButtonHolder(
-                Submit('submit', 'Post an offer', css_class='btn btn-primary'),
+            Div(
+                Fieldset(
+                    '',
+                        Field('title', css_class='form-group', id='title'),
+                        Field('dep_address', css_class='form-group', id='dep_address'),
+                        Field('arr_address', css_class='form-group', id='arr_address'),
+                        Div(
+                            Div('dep_date', css_class='form-group col', css_id='dep_date'),
+                            Div('seats', css_class='form-group col-md-auto', css_id='seats'),
+                            css_class='form-row'),
+                        Field('comment', css_class='form-group', css_rows='3', id='comment')
+                        
+                ),
+                ButtonHolder(
+                    Submit('submit', 'Post an offer', css_class='btn btn-primary'),
+                )
             )
         )
         super(MakeOffer,self).__init__(*args, **kwargs)

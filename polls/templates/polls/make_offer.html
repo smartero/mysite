@@ -10,14 +10,14 @@ function init(){
     var suggestView2 = new ymaps.SuggestView('arr_address');    
 };
 </script>
-<form method='post'>
+<form method='post' autocomplete="off">
   {% csrf_token %}
   <div class='container'>
-    <h2>
-      <p>Offer a trip</p>
-    </h2>
+      <div class='row justify-content-md-center'>
+        <h2>Offer a trip</h2>
+      </div>
     <div class='row justify-content-md-center'>
-     {% crispy form %}
+      {% crispy form %}
     </div>
   </div>
 </form>
