@@ -40,10 +40,9 @@ class MakeOffer(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         self.helper = FormHelper()
         self.helper.layout = Layout(
-            
                 Fieldset(
                     '',
-                        Field('title', css_class='form-group', id='title'),
+                        Field('title', id='title'),
                         Field('dep_address', css_class='form-group', id='dep_address'),
                         Field('arr_address', css_class='form-group', id='arr_address'),
                         Div(
@@ -51,8 +50,6 @@ class MakeOffer(forms.ModelForm):
                             Div('seats', css_class='form-group col-md-auto', css_id='seats'),
                             css_class='form-row'),
                         Field('comment', css_class='form-group', css_rows='3', id='comment')
-                        
-                           
             )
         )
         super(MakeOffer,self).__init__(*args, **kwargs)

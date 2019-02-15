@@ -14,22 +14,12 @@ function init(){
   {% csrf_token %}
   <div class='container'>
     <div class='row justify-content-center'>
-      <h2>Offer a trip</h2>
+      <h2>Make an offer</h2>
     </div>
     <div class='row justify-content-center'>
       <div class="form-group col-md-6">
-        <label for="{{ form.title.id_for_label }">Title*</label>
-        <input type="text" class="form-control" id="title">
+        {% crispy form %}
       </div>
-    </div>
-    <div class='row justify-content-center'>
-      <div class="form-group col-md-6">
-        <label for="{{ form.title.id_for_label }">Title*</label>
-        <input type="text" class="form-control" id="title">
-      </div>   
-    </div>
-    <div class='row justify-content-center'>
-      <button type="submit" class="btn btn-primary">Post an offer</button>
     </div>
   </div>
 </form>
