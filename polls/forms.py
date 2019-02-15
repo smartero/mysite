@@ -40,7 +40,7 @@ class MakeOffer(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         self.helper = FormHelper()
         self.helper.layout = Layout(
-            Div(
+            
                 Fieldset(
                     '',
                         Field('title', css_class='form-group', id='title'),
@@ -52,10 +52,7 @@ class MakeOffer(forms.ModelForm):
                             css_class='form-row'),
                         Field('comment', css_class='form-group', css_rows='3', id='comment')
                         
-                ),
-                ButtonHolder(
-                    Submit('submit', 'Post an offer', css_class='btn btn-primary'),
-                )
+                           
             )
         )
         super(MakeOffer,self).__init__(*args, **kwargs)
