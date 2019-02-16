@@ -28,20 +28,12 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
   
-    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #669410;">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <a class="navbar-brand" href="/">
         <!--<img src="C:\Users\smartero\hello\project\static\images\logo3.svg" width="30" height="30" alt="" fill='white'>-->
         Travellers
       </a>
-    <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
-    </div>
-    
-    <div class="navbar-collapse collapse w-100 order-2 dual-collapse2">
-        {% if user.is_authenticated %}
-        <span class="navbar-text">Hello, {{ user }}</span>
-        {% endif %}
-    </div>
-    <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">    
       <ul class="navbar-nav ml-auto">
         {% if user.is_authenticated %}
         <li class="nav-item">
@@ -58,20 +50,19 @@
           </li>
         {% else %}    
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'register' %}">Register</a>
+            <a class="nav-link" href="{% url 'register' %}">Join</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'login' %}">LogIn</a>
+            <a class="nav-link" href="{% url 'login' %}">Login</a>
           </li>
           {% endif %}
-      </ul>
-    </div>
+      </ul>    
     </nav>
     
   </head>
   <title>Travellers</title>
     <body>
-    <main class="container p-5">
+    <div class="container">
       {% if messages %}
         {% for message in messages %}
           <div class="alert alert-{{ message.tags }}" role="alert">
@@ -80,6 +71,8 @@
         {% endfor %}
       {% endif %}
     {% block main %}{% endblock %}
+    </div>
     </main>
+
   </body>
 </html>

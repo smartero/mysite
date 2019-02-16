@@ -57,7 +57,7 @@ def make_offer(request):
             result.user = request.user
             result.save()
             messages.success(request, f'Your offer has been successfully created!')
-            return redirect('index')
+            return redirect('search')
     else:
         form = MakeOffer()
     return render(request, 'polls/make_offer.html', {'form': form})

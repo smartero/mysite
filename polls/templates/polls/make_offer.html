@@ -15,7 +15,7 @@
     $( "#id_dep_date" ).datepicker();
   });
 </script>
-<form action="" method='post' autocomplete="off">
+<form action="{% url 'make_offer' %}" method='post' autocomplete="off">
   {% csrf_token %}
   <div class='container'>
     <div class='row justify-content-center'>

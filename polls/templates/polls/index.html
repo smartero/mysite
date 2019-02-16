@@ -1,29 +1,11 @@
 {% extends 'polls/layout.html' %}
 
 {% block main %}
-<form method="post">
-  {% csrf_token %}
-<h2>
-  <p>Search for a trip</p>
-</h2>
-  <div class="form-row">
-    <div class="col-auto">
-      <label class="sr-only" for="inlineFormInput">From</label>
-      <input type="text" class="form-control mb-2" id="departure" placeholder="From">
-    </div>
-    <div class="col-auto">
-      <label class="sr-only" for="inlineFormInput">To</label>
-      <input type="text" class="form-control mb-2" id="destination" placeholder="To">
-    </div>
-    <div class="col-auto">
-      <div class="form-check mb-2">
-        <label class="sr-only">Pax</label>
-        <input type="number" size='1' min='1' class="form-control mb-2" id="pax" value='1'>
-      </div>
-    </div>
-    <div class="col-auto">
-      <button type="submit" class="btn btn-primary mb-2">Submit</button>
-    </div>
-  </div>
-</form>
+<div class="jumbotron">
+  <h1 class="display-4">Hello!</h1>
+  <p class="lead">Travellers is a place where drivers and passengers find each other. Discover the world of co-travelling by sharing travel experiences. This site is for non-commercial use.</p>
+  <hr class="my-4">
+  <p>Join and meet new people.</p>
+  <a class="btn btn-primary btn-lg" href="{% url 'search' %}" role="button">Join</a>
+</div>
 {% endblock %}
