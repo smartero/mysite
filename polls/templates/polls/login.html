@@ -2,9 +2,8 @@
 {% load crispy_forms_tags %}
 
 {% block main %}
-<form action="{% url 'login' %}" method='post'>
+<form action="{% url 'login' %}" method='post' autocomplete="off">
   {% csrf_token %}
-  <div class='container'>
     <div class='row justify-content-center'>
       <div class="form-group col-md-6">
         {{ form|crispy }}
@@ -19,6 +18,5 @@
         <a class='text-primary' href='{% url "register" %}'>Register</a>
       </small>
     </div>
-  </div>
 </form>
 {% endblock %}
