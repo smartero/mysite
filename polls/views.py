@@ -52,7 +52,6 @@ def details(request, result_id):
 def make_offer(request):
     if request.method == 'POST':
         form = MakeOffer(request.POST)
-        
         if form.is_valid():
             result = form.save(commit=False)
             result.user = request.user

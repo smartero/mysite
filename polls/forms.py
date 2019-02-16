@@ -43,13 +43,13 @@ class MakeOffer(forms.ModelForm):
                 Fieldset(
                     '',
                         Field('title', id='title'),
-                        Field('dep_address', css_class='form-group', id='dep_address'),
-                        Field('arr_address', css_class='form-group', id='arr_address'),
+                        Field('dep_address', css_class='form-group'),
+                        Field('arr_address', css_class='form-group'),
                         Div(
-                            Div('dep_date', css_class='form-group col', css_id='dep_date'),
-                            Div('seats', css_class='form-group col-md-auto', css_id='seats'),
+                            Div('dep_date', css_class='form-group col'),
+                            Div('seats', css_class='form-group col-md-auto'),
                             css_class='form-row'),
-                        Field('comment', css_class='form-group', css_rows='3', id='comment')
+                        Field('comment', css_class='form-group', css_rows='3')
             )
         )
         super(MakeOffer,self).__init__(*args, **kwargs)

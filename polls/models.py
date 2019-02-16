@@ -19,16 +19,16 @@ class Car(models.Model):
         return f'{self.your_car} {self.your_model}' 
 
 class Result(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
     title = models.CharField(max_length=100)
-    dep_address = models.CharField(max_length=100)
+    dep_address = models.CharField(max_length=300)
     dep_date = models.DateTimeField()
-    arr_address = models.CharField(max_length=100)
+    arr_address = models.CharField(max_length=300)
     # blank=True if you wish to permit empty values in forms, as the null parameter only affects database storage
     comment = models.CharField(max_length=200, blank=True, null=True)
     #car = models.ForeignKey(Car, on_delete=models.CASCADE, related_name='car')
     seats = models.IntegerField()
-    passengers = models.ManyToManyField(Profile, blank=True, null=True)
+    passengers = models.ManyToManyField(Profile, blank=True)
     created_date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

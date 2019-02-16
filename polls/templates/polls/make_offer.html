@@ -4,22 +4,30 @@
 {% block main %}
 <script src="https://api-maps.yandex.ru/2.1/?apikey=<515f3159-bfbe-4a5b-9067-a36951149219>&lang=en_US" type="text/javascript"></script>
 <script type='text/javascript'>
-ymaps.ready(init);
-function init(){
-    var suggestView1 = new ymaps.SuggestView('dep_address');    
-    var suggestView2 = new ymaps.SuggestView('arr_address');    
-};
+  ymaps.ready(init);
+  function init(){
+      var suggestView1 = new ymaps.SuggestView('id_dep_address');    
+      var suggestView2 = new ymaps.SuggestView('id_arr_address');    
+  };
 </script>
-<form method='post' autocomplete="off">
+<script>
+  $(document).ready(function(){
+    $( "#id_dep_date" ).datepicker();
+  });
+</script>
+<form action="" method='post' autocomplete="off">
   {% csrf_token %}
   <div class='container'>
     <div class='row justify-content-center'>
-      <h2>Make an offer</h2>
+      <h2>Offer a trip</h2>
     </div>
     <div class='row justify-content-center'>
       <div class="form-group col-md-6">
         {% crispy form %}
       </div>
+    </div>
+    <div class='row justify-content-center'>
+      <button type="submit" class="btn btn-primary">Submit</button>
     </div>
   </div>
 </form>
