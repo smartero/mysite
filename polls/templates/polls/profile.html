@@ -2,13 +2,14 @@
 
 {% block main %}
 
-
-<div class="content-section">
-    <div class="media">
+<h2>Profile</h2>
+<br>
+<div class="row">
+    <div class="col">
         <!-- resource for static files src={ polls/images/some.img } -->
-        <img class="rounded-circle profile-img"  src="{{ user.profile.avatar.url }}" alt=""/>
+        <img class="img-thumbnail float-left" id="avatar" src="{{ user.profile.avatar.url }}" alt=""/>
     </div>    
-    <div class="media-body">
+    <div class="col">
         <div class="details">
             <h2>{{ user.username }}</h2>
             <p class="profile-info" id='email'><span>{{ user.email }}</span></p>
@@ -18,9 +19,7 @@
             <a href="">As a driver</a><br/>
             <a href="">As a passenger</a><br/> 
         </div> 
-        <div class="button">
         <a class="btn btn-outline-primary" href="{% url 'edit_profile' %}" role="button">Edit profile</a>
-    </div>
     </div>
 </div>
 
