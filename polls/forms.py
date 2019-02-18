@@ -52,4 +52,5 @@ class MakeOffer(forms.ModelForm):
                         Field('comment', css_class='form-group', css_rows='3')
             )
         )
+        
         super(MakeOffer,self).__init__(*args, **kwargs)
