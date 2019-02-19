@@ -5,25 +5,37 @@
 <h2>Profile</h2>
 <br>
 <div class="row">
-    <div class="col">
+    <div class="col-md-4">
         <!-- resource for static files src={ polls/images/some.img } -->
         <img class="img-thumbnail float-left" id="avatar" src="{{ user.profile.avatar.url }}" alt=""/>
     </div>    
-    <div class="col">
-        <div class="details">
-            <h2>{{ user.username }}</h2>
-            <p class="profile-info" id='email'><span>{{ user.email }}</span></p>
-        </div>
-        <div class='my-trips'>
-            <p>MY TRIPS</p>
-            <a href="">As a driver</a><br/>
-            <a href="">As a passenger</a><br/> 
-        </div> 
+    <div class="col-md-8">
+        <p>MY TRIPS</p>
+        <ul class="nav nav-tabs">
+        <li class="nav-item"> 
+            <a class="nav-link active" href="#">As a driver</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="">As a passenger</a>
+        </li>
+        </ul>
     </div>
-        <div class="col">
-        <a class="btn btn-outline-primary" href="{% url 'edit_profile' %}" role="button">Edit profile</a>
-    </div>
-    
 </div>
-
+<div class="row">
+    <div class="col-md-3">
+        <table class="table table-borderless">
+            <tbody>
+                <tr>
+                    <td>Username:</td>
+                    <td>{{ user.username }}</td>
+                </tr>
+                <tr>
+                    <td>E-mail:</td>
+                    <td>{{ user.email }}</td>
+                </tr>
+            </tbody>
+        </table>
+        <button type="button" class="btn btn-outline-primary btn-sm" href="{% url 'edit_profile' %}">Edit profile</button>
+    </div>
+</div>
 {% endblock %}
