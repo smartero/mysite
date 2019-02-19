@@ -36,21 +36,3 @@ class MakeOffer(forms.ModelForm):
     class Meta:
         model = Result
         fields = '__all__'
-    # customizing crispy form
-    def __init__(self, *args, **kwargs):
-        self.helper = FormHelper()
-        self.helper.layout = Layout(
-                Fieldset(
-                    '',
-                        Field('title', id='title'),
-                        Field('dep_address', css_class='form-group'),
-                        Field('arr_address', css_class='form-group'),
-                        Div(
-                            Div('dep_date', css_class='form-group col'),
-                            Div('seats', css_class='form-group col-md-auto'),
-                            css_class='form-row'),
-                        Field('comment', css_class='form-group', css_rows='3')
-            )
-        )
-        
-        super(MakeOffer,self).__init__(*args, **kwargs)
