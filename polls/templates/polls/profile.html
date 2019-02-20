@@ -1,41 +1,111 @@
 {% extends 'polls/layout.html' %}
 
 {% block main %}
-
+<script>
+    $(document).ready(function(){
+        let result = document.querySelectorAll('#driver_list');
+        let count_d = document.querySelectorAll('#count_d');
+        for (let i = 0; i < result.length; i++)
+        {
+            count_d[i].innerHTML = i+1;
+        }
+    });
+</script>
+<script>
+    $(document).ready(function(){
+        let result = document.querySelectorAll('#passenger_list');
+        let count_p = document.querySelectorAll('#count_p');
+        for (let i = 0; i < result.length; i++)
+        {
+            count_p[i].innerHTML = i+1;
+        }
+    });
+</script>
 <h2>Profile</h2>
 <br>
 <div class="row">
     <div class="col-md-4">
+        <div class="row">
         <!-- resource for static files src={ polls/images/some.img } -->
         <img class="img-thumbnail float-left" id="avatar" src="{{ user.profile.avatar.url }}" alt=""/>
+    </div>
+        <div class="row">
+            <div class="col-md-3">
+                <table class="table table-borderless">
+                    <tbody>
+                        <tr>
+                            <td>Username:</td>
+                            <td>{{ user.username }}</td>
+                        </tr>
+                        <tr>
+                            <td>E-mail:</td>
+                            <td>{{ user.email }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <button type="button" class="btn btn-outline-primary btn-sm" href="{% url 'edit_profile' %}">Edit profile</button>
+            </div>
+        </div>
     </div>    
     <div class="col-md-8">
         <p>MY TRIPS</p>
         <ul class="nav nav-tabs">
-        <li class="nav-item"> 
-            <a class="nav-link active" href="#">As a driver</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="">As a passenger</a>
-        </li>
+            <li class="nav-item"> 
+                <a class="nav-link active" id="driver-tab" data-toggle="tab" href="#driver" role="tab" aria-controls="driver" aria-selected="true">As a driver</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="passenger-tab" data-toggle="tab" href="#passenger" role="tab" aria-controls="passenger" aria-selected="false">As a passenger</a>
+            </li>
         </ul>
+        <div class="tab-content">
+            <div class="tab-pane fade show active" id="driver" role="tabpanel" aria-labelledby="driver-tab">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">From</th>
+                        <th scope="col">To</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Free seats</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for result in result %}
+                    <tr id="driver_list">
+                        <th scope="row" id="count_d"></th>
+                        <td>{{ result.dep_address }}</td>
+                        <td>{{ result.arr_address }}</td>
+                        <td>{{ result.dep_date }}</td>
+                        <td>{{ result.seats }}/</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>        
+            </div>
+            <div class="tab-pane fade" id="passenger" role="tabpanel" aria-labelledby="passenger-tab">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">From</th>
+                        <th scope="col">To</th>
+                        <th scope="col">Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for passenger in passenger %}
+                    <tr id="passenger_list">
+                        <th scope="row" id="count_p"></th>
+                        <td>{{ passenger.dep_address }}</td>
+                        <td>{{ passenger.arr_address }}</td>
+                        <td>{{ passenger.dep_date }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>            
+            </div>
+        </div>
     </div>
 </div>
-<div class="row">
-    <div class="col-md-3">
-        <table class="table table-borderless">
-            <tbody>
-                <tr>
-                    <td>Username:</td>
-                    <td>{{ user.username }}</td>
-                </tr>
-                <tr>
-                    <td>E-mail:</td>
-                    <td>{{ user.email }}</td>
-                </tr>
-            </tbody>
-        </table>
-        <button type="button" class="btn btn-outline-primary btn-sm" href="{% url 'edit_profile' %}">Edit profile</button>
-    </div>
-</div>
+
 {% endblock %}

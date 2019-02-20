@@ -33,7 +33,14 @@ def register(request):
 
 @login_required
 def profile(request):
-    return render(request, 'polls/profile.html')
+    user = request.user
+    result = Result.objects.filter(user=user)
+    passenger = Result.objects.filter(passengers=Profile.objects.filter(user=user).first())
+    context = {
+        'result': result,
+        'passenger': passenger
+    }
+    return render(request, 'polls/profile.html', context)
 
 @login_required
 def search(request):
