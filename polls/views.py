@@ -8,6 +8,7 @@ from .models import Result, Profile
 from django.views.generic.edit import FormView, CreateView, UpdateView, DeleteView
 from django.views.generic.list import ListView
 from django.contrib.auth.models import User
+from django.core.paginator import Paginator
 
 def index(request):
     if request.method == 'POST':
@@ -36,9 +37,14 @@ def profile(request):
     user = request.user
     result = Result.objects.filter(user=user)
     passenger = Result.objects.filter(passengers=Profile.objects.filter(user=user).first())
+    driver_paginator = Paginator(result,2)
+    page = request.GET.get('page')
+    pages = driver_paginator.get_page(page)
+
     context = {
         'result': result,
-        'passenger': passenger
+        'passenger': passenger,
+        'pages': pages
     }
     return render(request, 'polls/profile.html', context)
 
