@@ -51,7 +51,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for page in pages %}
+                    {% for page in driver_pages %}
                     <tr id="driver_list">
                         <td>{{ page.date }}</td>
                         <td>{{ page.dep_address }}</td>
@@ -64,16 +64,16 @@
             </table>    
             <div class="pagination">
                 <span class="step-links">
-                    {% if pages.has_previous %} <!--return True if there's previous page-->
-                        <a href="?page=1">&laquo; first</a><!-- &laquo << -->
-                        <a href="?page={{ pages.previous_page_number }}">previous</a>
+                    {% if driver_pages.has_previous %} <!--return True if there's previous page-->
+                        <a href="?page_d=1">&laquo; first</a><!-- &laquo << -->
+                        <a href="?page_d={{ driver_pages.previous_page_number }}">previous</a>
                     {% endif %}
                     <span class="current">
-                        Page {{ pages.number }} of {{ pages.paginator.num_pages }}
+                        Page {{ driver_pages.number }} of {{ driver_pages.paginator.num_pages }}
                     </span>
-                    {% if pages.has_next %}
-                        <a href="?page={{ pages.next_page_number }}">next</a>
-                        <a href="?page={{ pages.paginator.num_pages }}">last &raquo;</a>
+                    {% if driver_pages.has_next %}
+                        <a href="?page_d={{ driver_pages.next_page_number }}">next</a>
+                        <a href="?page_d={{ driver_pages.paginator.num_pages }}">last &raquo;</a>
                     {% endif %}
                 </span>
             </div>    
@@ -88,17 +88,34 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for passenger in passenger %}
-                        <td>{{ passenger.dep_address }}</td>
-                        <td>{{ passenger.arr_address }}</td>
-                        <td>{{ passenger.dep_date }}</td>
+                    {% for page in passenger_pages %}
+                        <td>{{ page.dep_address }}</td>
+                        <td>{{ page.arr_address }}</td>
+                        <td>{{ page.dep_date }}</td>
                     </tr>
                     {% endfor %}
                 </tbody>
-            </table>            
+            </table>  
+            <div class="pagination">
+                <span class="step-links">
+                    {% if passenger_pages.has_previous %} <!--return True if there's previous page-->
+                        <a href="?page_p=1">&laquo; first</a><!-- &laquo << -->
+                        <a href="?page_p={{ pasenger_pages.previous_page_number }}">previous</a>
+                    {% endif %}
+                    <span class="current">
+                        Page {{ passenger_pages.number }} of {{ passenger_pages.paginator.num_pages }}
+                    </span>
+                    {% if passenger_pages.has_next %}
+                        <a href="?page_p={{ passenger_pages.next_page_number }}">next</a>
+                        <a href="?page_p={{ passenger_pages.paginator.num_pages }}">last &raquo;</a>
+                    {% endif %}
+                </span>
+            </div>              
             </div>
         </div>
     </div>
 </div>
+
+
 
 {% endblock %}
