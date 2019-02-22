@@ -42,7 +42,6 @@ def profile(request):
     pages = driver_paginator.get_page(page)
 
     context = {
-        'result': result,
         'passenger': passenger,
         'pages': pages
     }

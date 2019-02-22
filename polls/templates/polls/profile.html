@@ -1,26 +1,7 @@
 {% extends 'polls/layout.html' %}
 
 {% block main %}
-<script>
-    $(document).ready(function(){
-        let result = document.querySelectorAll('#driver_list');
-        let count_d = document.querySelectorAll('#count_d');
-        for (let i = 0; i < result.length; i++)
-        {
-            count_d[i].innerHTML = i+1;
-        }
-    });
-</script>
-<script>
-    $(document).ready(function(){
-        let result = document.querySelectorAll('#passenger_list');
-        let count_p = document.querySelectorAll('#count_p');
-        for (let i = 0; i < result.length; i++)
-        {
-            count_p[i].innerHTML = i+1;
-        }
-    });
-</script>
+
 <h2>Profile</h2>
 <br>
 <div class="row">
@@ -62,7 +43,7 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th scope="col">#</th>
+                        <th scope="col">Created</th>
                         <th scope="col">From</th>
                         <th scope="col">To</th>
                         <th scope="col">Date</th>
@@ -70,13 +51,13 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for result in result %}
+                    {% for page in pages %}
                     <tr id="driver_list">
-                        <th scope="row" id="count_d"></th>
-                        <td>{{ result.dep_address }}</td>
-                        <td>{{ result.arr_address }}</td>
-                        <td>{{ result.dep_date }}</td>
-                        <td>{{ result.seats }}/</td>
+                        <td>{{ page.date }}</td>
+                        <td>{{ page.dep_address }}</td>
+                        <td>{{ page.arr_address }}</td>
+                        <td>{{ page.dep_date }}</td>
+                        <td>{{ page.seats }}/</td>
                     </tr>
                     {% endfor %}
                 </tbody>
@@ -88,7 +69,7 @@
                         <a href="?page={{ pages.previous_page_number }}">previous</a>
                     {% endif %}
                     <span class="current">
-                        Page {{ pages.number }} of {{ pages.paginator.num_pages }}.
+                        Page {{ pages.number }} of {{ pages.paginator.num_pages }}
                     </span>
                     {% if pages.has_next %}
                         <a href="?page={{ pages.next_page_number }}">next</a>
@@ -101,7 +82,6 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th scope="col">#</th>
                         <th scope="col">From</th>
                         <th scope="col">To</th>
                         <th scope="col">Date</th>
@@ -109,8 +89,6 @@
                 </thead>
                 <tbody>
                     {% for passenger in passenger %}
-                    <tr id="passenger_list">
-                        <th scope="row" id="count_p"></th>
                         <td>{{ passenger.dep_address }}</td>
                         <td>{{ passenger.arr_address }}</td>
                         <td>{{ passenger.dep_date }}</td>
