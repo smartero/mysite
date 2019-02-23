@@ -51,13 +51,13 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for page in driver_pages %}
+                    {% for driver in driver %}
                     <tr id="driver_list">
-                        <td>{{ page.date }}</td>
-                        <td>{{ page.dep_address }}</td>
-                        <td>{{ page.arr_address }}</td>
-                        <td>{{ page.dep_date }}</td>
-                        <td>{{ page.seats }}/</td>
+                        <td>{{ driver.date }}</td>
+                        <td>{{ driver.dep_address }}</td>
+                        <td>{{ driver.arr_address }}</td>
+                        <td>{{ driver.dep_date }}</td>
+                        <td>{{ driver.seats }}/</td>
                     </tr>
                     {% endfor %}
                 </tbody>
@@ -73,10 +73,10 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for page in passenger_pages %}
-                        <td>{{ page.dep_address }}</td>
-                        <td>{{ page.arr_address }}</td>
-                        <td>{{ page.dep_date }}</td>
+                    {% for passenger in passenger %}
+                        <td>{{ passenger.dep_address }}</td>
+                        <td>{{ passenger.arr_address }}</td>
+                        <td>{{ passenger.dep_date }}</td>
                     </tr>
                     {% endfor %}
                 </tbody>

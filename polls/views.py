@@ -37,16 +37,10 @@ def profile(request):
     user = request.user
     result = Result.objects.filter(user=user)
     passenger = Result.objects.filter(passengers=Profile.objects.filter(user=user).first())
-    paginator_driver = Paginator(result, 2)
-    paginator_passenger = Paginator(passenger, 2)
-    page_d = request.GET.get('page_d')
-    page_p = request.GET.get('page_p')
-    driver_pages = paginator_driver.get_page(page_d)
-    passenger_pages = paginator_passenger.get_page(page_p)
-
+    
     context = {
-        'driver_pages': driver_pages,
-        'passenger_pages': passenger_pages
+        'driver': driver,
+        'passenger': passenger
     }
     return render(request, 'polls/profile.html', context)
 
