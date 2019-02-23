@@ -2,40 +2,41 @@
 
 {% block main %}
 
-<h2>Profile</h2>
+<div class="row">
+    <div class="col-4">
+        <div class="row">
+            <!-- resource for static files src={ polls/images/some.img } -->
+            <img class="img-thumbnail float-left" id="avatar" src="{{ user.profile.avatar.url }}" alt=""/>
+        </div>
+    </div>
+    <div class="col">
+        <div class="col-md-3">
+            <table class="table table-borderless">
+                <tbody>
+                    <tr>
+                        <td>Username:</td>
+                        <td>{{ user.username }}</td>
+                    </tr>
+                    <tr>
+                        <td>E-mail:</td>
+                        <td>{{ user.email }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <button type="button" class="btn btn-outline-primary btn-sm" href="{% url 'edit_profile' %}">Edit profile</button>
+        </div>
+    </div>
+</div>  
 <br>
 <div class="row">
-    <div class="col-md-4">
-        <div class="row">
-        <!-- resource for static files src={ polls/images/some.img } -->
-        <img class="img-thumbnail float-left" id="avatar" src="{{ user.profile.avatar.url }}" alt=""/>
-    </div>
-        <div class="row">
-            <div class="col-md-3">
-                <table class="table table-borderless">
-                    <tbody>
-                        <tr>
-                            <td>Username:</td>
-                            <td>{{ user.username }}</td>
-                        </tr>
-                        <tr>
-                            <td>E-mail:</td>
-                            <td>{{ user.email }}</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <button type="button" class="btn btn-outline-primary btn-sm" href="{% url 'edit_profile' %}">Edit profile</button>
-            </div>
-        </div>
-    </div>    
-    <div class="col-md-8">
+    <div class="col-flex">
         <p>MY TRIPS</p>
         <ul class="nav nav-tabs" role='tablist'>
             <li class="nav-item"> 
-                <a class="nav-link active" id="driver-tab" href="#driver" role="tab" aria-controls="driver" aria-selected="true">As a driver</a>
+                <a class="nav-link active" id="driver-tab" data-toggle="tab" href="#driver" role="tab" aria-controls="driver" aria-selected="true">As a driver</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" id="passenger-tab" href="#passenger" role="tab" aria-controls="passenger" aria-selected="false">As a passenger</a>
+                <a class="nav-link" id="passenger-tab" data-toggle="tab" href="#passenger" role="tab" aria-controls="passenger" aria-selected="false">As a passenger</a>
             </li>
         </ul>
         <div class="tab-content">
@@ -53,7 +54,7 @@
                 <tbody>
                     {% for driver in driver %}
                     <tr id="driver_list">
-                        <td>{{ driver.date }}</td>
+                        <td>{{ driver.created_date }}</td>
                         <td>{{ driver.dep_address }}</td>
                         <td>{{ driver.arr_address }}</td>
                         <td>{{ driver.dep_date }}</td>
@@ -67,6 +68,7 @@
             <table class="table">
                 <thead>
                     <tr>
+                        <th scope="col">Driver</th>
                         <th scope="col">From</th>
                         <th scope="col">To</th>
                         <th scope="col">Date</th>
@@ -74,6 +76,7 @@
                 </thead>
                 <tbody>
                     {% for passenger in passenger %}
+                        <td>{{ passenger.user }}</td>
                         <td>{{ passenger.dep_address }}</td>
                         <td>{{ passenger.arr_address }}</td>
                         <td>{{ passenger.dep_date }}</td>

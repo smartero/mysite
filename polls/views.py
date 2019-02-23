@@ -35,7 +35,7 @@ def register(request):
 @login_required
 def profile(request):
     user = request.user
-    result = Result.objects.filter(user=user)
+    driver = Result.objects.filter(user=user)
     passenger = Result.objects.filter(passengers=Profile.objects.filter(user=user).first())
     
     context = {
