@@ -30,12 +30,12 @@
     </div>    
     <div class="col-md-8">
         <p>MY TRIPS</p>
-        <ul class="nav nav-tabs">
+        <ul class="nav nav-tabs" role='tablist'>
             <li class="nav-item"> 
-                <a class="nav-link active" id="driver-tab" data-toggle="tab" href="#driver" role="tab" aria-controls="driver" aria-selected="true">As a driver</a>
+                <a class="nav-link active" id="driver-tab" href="#driver" role="tab" aria-controls="driver" aria-selected="true">As a driver</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" id="passenger-tab" data-toggle="tab" href="#passenger" role="tab" aria-controls="passenger" aria-selected="false">As a passenger</a>
+                <a class="nav-link" id="passenger-tab" href="#passenger" role="tab" aria-controls="passenger" aria-selected="false">As a passenger</a>
             </li>
         </ul>
         <div class="tab-content">
@@ -62,21 +62,6 @@
                     {% endfor %}
                 </tbody>
             </table>    
-            <div class="pagination">
-                <span class="step-links">
-                    {% if driver_pages.has_previous %} <!--return True if there's previous page-->
-                        <a href="?page_d=1">&laquo; first</a><!-- &laquo << -->
-                        <a href="?page_d={{ driver_pages.previous_page_number }}">previous</a>
-                    {% endif %}
-                    <span class="current">
-                        Page {{ driver_pages.number }} of {{ driver_pages.paginator.num_pages }}
-                    </span>
-                    {% if driver_pages.has_next %}
-                        <a href="?page_d={{ driver_pages.next_page_number }}">next</a>
-                        <a href="?page_d={{ driver_pages.paginator.num_pages }}">last &raquo;</a>
-                    {% endif %}
-                </span>
-            </div>    
             </div>
             <div class="tab-pane fade" id="passenger" role="tabpanel" aria-labelledby="passenger-tab">
             <table class="table">
@@ -95,22 +80,7 @@
                     </tr>
                     {% endfor %}
                 </tbody>
-            </table>  
-            <div class="pagination">
-                <span class="step-links">
-                    {% if passenger_pages.has_previous %} <!--return True if there's previous page-->
-                        <a href="?page_p=1">&laquo; first</a><!-- &laquo << -->
-                        <a href="?page_p={{ pasenger_pages.previous_page_number }}">previous</a>
-                    {% endif %}
-                    <span class="current">
-                        Page {{ passenger_pages.number }} of {{ passenger_pages.paginator.num_pages }}
-                    </span>
-                    {% if passenger_pages.has_next %}
-                        <a href="?page_p={{ passenger_pages.next_page_number }}">next</a>
-                        <a href="?page_p={{ passenger_pages.paginator.num_pages }}">last &raquo;</a>
-                    {% endif %}
-                </span>
-            </div>              
+            </table>              
             </div>
         </div>
     </div>
