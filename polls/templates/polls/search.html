@@ -26,6 +26,16 @@
     $( "#dep_date" ).datepicker();
   });
   </script>
+  <script src=https://code.jquery.com/jquery-3.3.1.js></script>
+  <script src=https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js></script>
+  <script src=https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js></script>
+  </script>
+  <script>
+  $(document).ready(function() {
+    $('#example').DataTable();
+} );
+  </script>
+  
   <h2>Search for a trip</h2>
   <br>
   <form class="form-group"  autocomplete="off">
@@ -50,12 +60,20 @@
   </div>
 </form>
 
-<table type="table table-hover">
+<table class="table table-sm" id="example">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>From</th>
+      <th>To</th>
+    </tr>
+  </thead>
   {% for result in results %}
   <tbody>
     <tr>
-      <th scope="row">1</th>
-        <td>{{ result }}</td>
+      <td scope="row"></td>
+      <td>{{ result.dep_address }}</td>
+      <td>{{ result.arr_address }}</td>
     </tr>
   </tbody>
   {% endfor %}
