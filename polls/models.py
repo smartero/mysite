@@ -12,15 +12,15 @@ class Profile(models.Model):
     
 
 class Car(models.Model):
-    your_car = models.CharField(max_length=20)
-    your_model = models.CharField(max_length=20, blank=True)
+    car_model = models.CharField(max_length=20)
+    car_color = models.CharField(max_length=20, blank=True)
 
     def __str__(self):
-        return f'{self.your_car} {self.your_model}' 
+        return f'{self.car_model} {self.car_color}' 
 
 class Result(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
-    title = models.CharField(max_length=100)
+    title = models.CharField(max_length=100, help_text='Say a coule of words to attract attention')
     dep_address = models.CharField(max_length=300)
     dep_date = models.DateTimeField()
     arr_address = models.CharField(max_length=300)
@@ -29,7 +29,12 @@ class Result(models.Model):
     #car = models.ForeignKey(Car, on_delete=models.CASCADE, related_name='car')
     seats = models.IntegerField()
     passengers = models.ManyToManyField(Profile, blank=True)
+    car = models.ForeignKey(Car, on_delete=models.SET_NULL, blank=True, null=True)
     created_date = models.DateTimeField(auto_now_add=True)
+
+    # Metadata
+    class Meta:
+        ordering = ['-created_date']
 
     def __str__(self):
         return f'{self.title} {self.dep_date} {self.dep_address} - {self.arr_address}, {self.seats} {self.comment}'

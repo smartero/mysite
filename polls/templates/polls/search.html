@@ -13,10 +13,10 @@
   document.addEventListener('DOMContentLoaded', function() {
     document.querySelector('#pax').addEventListener('keyup', function(){
       var input = parseInt(document.querySelector('#pax').value);
-      var li = document.querySelectorAll('ul li');
-      for (i = 0; i < li.length; i++) {
-        var number = parseInt(li[i].innerHTML);
-        li[i].style.display = (number < input ? 'none': '');
+      var seats = document.querySelectorAll('#seats');
+      for (i = 0; i < seats.length; i++) {
+        var number = parseInt(seats[i].innerHTML);
+        seats[i].parentElement.style.display = (number < input ? 'none': '');
       };
     });
   });
@@ -25,17 +25,18 @@
   $(document).ready(function() {
     $( "#dep_date" ).datepicker();
   });
-  </script>
-  <script src=https://code.jquery.com/jquery-3.3.1.js></script>
-  <script src=https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js></script>
-  <script src=https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js></script>
-  </script>
-  <script>
-  $(document).ready(function() {
-    $('#example').DataTable();
-} );
-  </script>
-  
+</script>
+<script>
+$(document).ready(function(){
+  document.querySelector('#date').addEventListener('change', function(){
+  var date_r = querySelector('#date')
+  var date_t = querySelector('#date_trip')
+  var date_request = getDate(new Date(date_request.value));
+  var date_trip = getDate(new Date(date_trip.value));
+  date_r.parentElement.style.display = (date_request < date_trip ? 'none': '');
+});
+});
+</script>
   <h2>Search for a trip</h2>
   <br>
   <form class="form-group"  autocomplete="off">
@@ -63,17 +64,24 @@
 <table class="table table-sm" id="example">
   <thead>
     <tr>
-      <th>#</th>
-      <th>From</th>
-      <th>To</th>
+      <th style='width: 20%'>From</th>
+      <th style='width: 20%'>To</th>
+      <th>Date</th>
+      <th>Free seats</th>
+      <th>Driver</th>
+      <th></th>
+      </th>
     </tr>
   </thead>
   {% for result in results %}
   <tbody>
     <tr>
-      <td scope="row"></td>
       <td>{{ result.dep_address }}</td>
       <td>{{ result.arr_address }}</td>
+      <td id='date_trip'>{{ result.dep_date }}</td>
+      <td id='seats'>{{ result.seats }}</td>
+      <td>{{ result.user }}</td>
+      <td><img class="img-thumbnail float-left" id="avatar" src="{{ result.user.profile.avatar.url }}" alt=""/></td>
     </tr>
   </tbody>
   {% endfor %}
