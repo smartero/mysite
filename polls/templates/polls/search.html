@@ -26,50 +26,26 @@
     $( "#dep_date" ).datepicker();
   });
 </script>
-<script>
-$(document).ready(function(){
-  document.querySelector('#date').addEventListener('change', function(){
-  var date_r = querySelector('#date')
-  var date_t = querySelector('#date_trip')
-  var date_request = getDate(new Date(date_request.value));
-  var date_trip = getDate(new Date(date_trip.value));
-  date_r.parentElement.style.display = (date_request < date_trip ? 'none': '');
-});
-});
-</script>
   <h2>Search for a trip</h2>
   <br>
   <form class="form-group"  autocomplete="off">
     <div class='row'>
     <div class="col">
-      
-      <label for="dep_address">From:</label>   
-      <input class="form-control" id="dep_address" type="search">
-    </div>
-    <div class="col">
-      <label for="arr_address">To:</label>   
-      <input class="form-control" id="arr_address" type="search">
-    </div>
-    <div class="col">
-      <label for="date">Date:</label>
-      <input class="form-control" id="dep_date">
-    </div>
-    <div class="col">
-      <label for="">Passengers:</label>
-      <input class="form-control" id="pax">
+      <label for="">How many seats do you need:</label>
+      <input class="form-control" id="pax" style='width: 20%'>
     </div>
   </div>
 </form>
-
+<br>
 <table class="table table-sm" id="example">
   <thead>
     <tr>
-      <th style='width: 20%'>From</th>
-      <th style='width: 20%'>To</th>
+      <th style='width: 25%'>From</th>
+      <th style='width: 25%'>To</th>
       <th>Date</th>
       <th>Free seats</th>
       <th>Driver</th>
-      <th></th>
+      <th style='width: 10%'></th>
       </th>
     </tr>
   </thead>
