@@ -10,7 +10,6 @@ class Profile(models.Model):
     def __str__(self):
         return f'{self.user.username} Profile'
     
-
 class Car(models.Model):
     car_model = models.CharField(max_length=20)
     car_color = models.CharField(max_length=20, blank=True)
@@ -21,11 +20,11 @@ class Car(models.Model):
 class Result(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
     title = models.CharField(max_length=100, help_text='Say a coule of words to attract attention')
-    dep_address = models.CharField(max_length=300, help_text='Chhose city or district')
+    dep_address = models.CharField(max_length=300, help_text='City or district')
     dep_date = models.DateField()
-    arr_address = models.CharField(max_length=300)
+    arr_address = models.CharField(max_length=300, help_text='City or district')
     # blank=True if you wish to permit empty values in forms, as the null parameter only affects database storage
-    comment = models.CharField(max_length=200, blank=True, null=True, help_text='Place any additional info that you consider important (what music you like to listen in car, smoking/non-smoking, like to chat or prefer sray silent, etc)')
+    comment = models.CharField(max_length=200, blank=True, null=True)
     #car = models.ForeignKey(Car, on_delete=models.CASCADE, related_name='car')
     seats = models.IntegerField()
     passengers = models.ManyToManyField(Profile, blank=True)
@@ -38,3 +37,15 @@ class Result(models.Model):
 
     def __str__(self):
         return f'{self.title} {self.dep_date} {self.dep_address} - {self.arr_address}, {self.seats} {self.comment}'
+
+class Reservation(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    seats = models.IntegerField()
+    trip = models.ForeignKey(Result, on_delete=models.CASCADE)
+    created_date = models.DateField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['-created_date']
+        
+    def __str__(self):
+        return f'{self.user} {self.seats} {self.trip} {self.created_date}'
