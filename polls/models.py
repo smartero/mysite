@@ -21,16 +21,16 @@ class Car(models.Model):
 class Result(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
     title = models.CharField(max_length=100, help_text='Say a coule of words to attract attention')
-    dep_address = models.CharField(max_length=300)
-    dep_date = models.DateTimeField()
+    dep_address = models.CharField(max_length=300, help_text='Chhose city or district')
+    dep_date = models.DateField()
     arr_address = models.CharField(max_length=300)
     # blank=True if you wish to permit empty values in forms, as the null parameter only affects database storage
-    comment = models.CharField(max_length=200, blank=True, null=True)
+    comment = models.CharField(max_length=200, blank=True, null=True, help_text='Place any additional info that you consider important (what music you like to listen in car, smoking/non-smoking, like to chat or prefer sray silent, etc)')
     #car = models.ForeignKey(Car, on_delete=models.CASCADE, related_name='car')
     seats = models.IntegerField()
     passengers = models.ManyToManyField(Profile, blank=True)
     car = models.ForeignKey(Car, on_delete=models.SET_NULL, blank=True, null=True)
-    created_date = models.DateTimeField(auto_now_add=True)
+    created_date = models.DateField(auto_now_add=True)
 
     # Metadata
     class Meta:
