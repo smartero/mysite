@@ -30,16 +30,13 @@ def register(request):
             return redirect('login')
     else:
         form = UserRegister()
-        
     return render(request, 'polls/register.html', {'form': form})
-
 
 @login_required
 def profile(request):
     user = request.user
     driver = Result.objects.filter(user=user)
     passenger = Result.objects.filter(passengers=Profile.objects.filter(user=user).first())
-    
     context = {
         'driver': driver,
         'passenger': passenger
@@ -55,8 +52,8 @@ def search(request):
     return render(request, 'polls/search.html', context)
 
 @login_required
-def details(request, result_id):
-    result = Result.objects.filter(id=result_id).first()
+def details(request, id):
+    result = Result.objects.filter(id=result.id).first()
     return HttpResponseRedirect(request, 'polls/details/<int:>', {'result': result})
 
 @login_required

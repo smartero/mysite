@@ -74,7 +74,7 @@ tbody tr:hover{
       <td id='seats'>{{ result.seats }}</td>
       <td>{{ result.user }}</td>
       <td id="avatar"><img class="img-thumbnail float-left" id="avatar" src="{{ result.user.profile.avatar.url }}" alt=""/></td>
-      <td><button type="button" class="btn btn-outline-success btn-sm">Details</button></td>
+      <td><button type="button" class="btn btn-outline-success btn-sm" href="{% url 'details' %}">Details</button></td>
     </tr>
   </tbody>
   {% endfor %}
