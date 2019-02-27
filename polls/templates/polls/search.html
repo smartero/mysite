@@ -26,6 +26,21 @@
     $( "#dep_date" ).datepicker();
   });
 </script>
+<style>
+tbody tr:hover{
+  background-color: rgb(240, 255, 224);
+}
+
+#avatar{
+  width: 60px;
+  height: 60px;
+}
+</style>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    $('td').addClass("align-middle");
+  })
+</script>
   <h2>Search for a trip</h2>
   <br>
   <form class="form-group"  autocomplete="off">
@@ -46,6 +61,7 @@
       <th>Free seats</th>
       <th>Driver</th>
       <th style='width: 10%'></th>
+      <th style='width: 10%'></th>
       </th>
     </tr>
   </thead>
@@ -57,7 +73,8 @@
       <td id='date_trip'>{{ result.dep_date }}</td>
       <td id='seats'>{{ result.seats }}</td>
       <td>{{ result.user }}</td>
-      <td><img class="img-thumbnail float-left" id="avatar" src="{{ result.user.profile.avatar.url }}" alt=""/></td>
+      <td id="avatar"><img class="img-thumbnail float-left" id="avatar" src="{{ result.user.profile.avatar.url }}" alt=""/></td>
+      <td><button type="button" class="btn btn-outline-success btn-sm">Details</button></td>
     </tr>
   </tbody>
   {% endfor %}

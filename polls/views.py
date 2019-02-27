@@ -9,6 +9,7 @@ from django.views.generic.edit import FormView, CreateView, UpdateView, DeleteVi
 from django.views.generic.list import ListView
 from django.contrib.auth.models import User
 from django.core.paginator import Paginator
+from django.core.exceptions import ValidationError
 
 def index(request):
     if request.method == 'POST':
@@ -29,6 +30,7 @@ def register(request):
             return redirect('login')
     else:
         form = UserRegister()
+        
     return render(request, 'polls/register.html', {'form': form})
 
 
