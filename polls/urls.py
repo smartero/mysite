@@ -4,7 +4,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.auth.views import LoginView
 from polls import views as polls_views
-from  polls.views import SearchListView, DetailsListView
+from  polls.views import SearchListView, DetailsDetailView
 
 urlpatterns = [
     path('', polls_views.index, name='index'),
@@ -12,7 +12,7 @@ urlpatterns = [
     path('register/', polls_views.register, name='register'),
     path('profile/', polls_views.profile, name='profile'),
     path('search/', SearchListView.as_view(), name='search'),
-    path('details/<int:pk>/', DetailsListView.as_view(), name='details'),
+    path('details/<int:pk>/', DetailsDetailView.as_view(), name='details'),
     path('login/', auth_views.LoginView.as_view(template_name='polls/login.html'), name='login'),
     path('logout/', auth_views.LogoutView.as_view(template_name='polls/logout.html'), name='logout'),
     path('change_password/', auth_views.PasswordChangeView.as_view(template_name='change-password.html')),
