@@ -59,7 +59,7 @@ class SearchListView(ListView):
 class DetailsDetailView(DetailView):
     model = Result
     template_name = 'polls/details.html'
-    
+    context_object_name = 'details'
 
 '''
 @login_required
