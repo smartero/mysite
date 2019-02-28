@@ -6,7 +6,7 @@ from django.contrib import messages
 from .forms import UserRegister, EditProfile, EditAvatar, MakeOffer
 from .models import Result, Profile
 from django.views.generic.edit import FormView, CreateView, UpdateView, DeleteView
-from django.views.generic.list import ListView
+from django.views.generic import ListView, DetailView
 from django.contrib.auth.models import User
 from django.core.paginator import Paginator
 from django.core.exceptions import ValidationError
@@ -51,11 +51,22 @@ def search(request):
     }
     return render(request, 'polls/search.html', context)
 
+class SearchListView(ListView):
+    model = Result
+    template_name = 'polls/search.html'
+    context_object_name = 'results'
+
+class DetailsListView(DetailView):
+    model = Result
+    template_name = 'polls/details.html'
+    context_object_name = 'details'
+
+'''
 @login_required
-def details(request, id):
+class details(request, id):
     result = Result.objects.filter(id=result.id).first()
     return HttpResponseRedirect(request, 'polls/details/<int:>', {'result': result})
-
+'''
 @login_required
 def make_offer(request):
     if request.method == 'POST':
