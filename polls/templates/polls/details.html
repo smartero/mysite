@@ -1,10 +1,52 @@
 {% extends 'polls/layout.html' %}
 
 {% block main %}
+<style>
+    ul{
+        list-style: none;
+    }
+    #avatar{
+        width: 100px;
+        height: 100px;
+    }
 
-<ul>
-<li>{{ details.dep_address }}</li>
-<li id="avatar"><img class="img-thumbnail float-left" id="avatar" src="{{ details.user.profile.avatar.url }}" alt=""/></li>
+</style>
+
+<h2>Route details</h2>
+<br>
+<table class="table">
+    <tbody>
+        <tr>
+            <td><i class="material-icons">date_range</i></td>
+            <td>{{ details.dep_date }}</td>
+        </tr>
+        <tr>
+            
+            <td>{{ details.dep_address }} &#8594; {{ details.arr_address}}</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Left {{ details.seats }} seats</td>
+            
+        </tr>
+        <tr>
+            <td>
+                {{ details.user }}
+            </td>
+            <td>
+                {{ details.comments }}
+            </td>
+            <td>
+                <img class="img-thumbnail" id="avatar" src="{{ details.user.profile.avatar.url }}" alt=""/>
+            </td>
+        </tr>
+        <tr>
+            <td><i class="material-icons">done</i> </td>
+            <td>Auto-confirmation</td>
+        </tr>
+    </tbody>
+    
+
 
 
 </ul>
