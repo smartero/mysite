@@ -21,15 +21,15 @@
             <td>{{ details.dep_date }}</td>
         </tr>
         <tr>
-            
-            <td>{{ details.dep_address }} &#8594; {{ details.arr_address}}</td>
             <td></td>
+            <td>{{ details.dep_address }} &#8594; {{ details.arr_address}}</td>
         </tr>
         <tr>
+            <td></td>
             <td>Left {{ details.seats }} seats</td>
-            
         </tr>
         <tr>
+            <td></td>
             <td>
                 {{ details.user }}
             </td>
@@ -44,6 +44,13 @@
             <td><i class="material-icons">done</i> </td>
             <td>Auto-confirmation</td>
         </tr>
+        {% if details.passengers == 'NULL' %}
+        <tr>
+            {% for passenger in details.passengers.all %}
+            <td>{{ passenger }}</td>     
+            {% endfor %}
+        </tr>
+        {% endif %}
     </tbody>
     
 
