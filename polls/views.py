@@ -56,18 +56,18 @@ class SearchListView(ListView):
     template_name = 'polls/search.html'
     context_object_name = 'results'
 
-class DetailsDetailView(DetailView):
+
+class DetailsDetailView(FormMixin, DetailView):
     model = Result
     template_name = 'polls/details.html'
     context_object_name = 'details'
 
-    
-'''
-@login_required
-class details(request, id):
-    result = Result.objects.filter(id=result.id).first()
-    return HttpResponseRedirect(request, 'polls/details/<int:>', {'result': result})
-'''
+    def get(self, request, *args, **kwargs):
+        pass
+
+    def post(self,request, *args, **kwargs):
+        self.form = 
+
 @login_required
 def make_offer(request):
     if request.method == 'POST':
