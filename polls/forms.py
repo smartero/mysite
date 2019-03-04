@@ -2,8 +2,6 @@ from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from .models import Profile, Result
-from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout, Fieldset, ButtonHolder, Submit, Div, Field, HTML, MultiField
 
 class UserRegister(UserCreationForm):
     # create additional form, in () "required" by default is True
@@ -29,6 +27,7 @@ class MakeOffer(forms.ModelForm):
     seats = forms.IntegerField(label='Seats', min_value=1, max_value=4, initial=1, help_text='Free seats available for reservation')
     #trip_type = forms.ChoiceField(widget=forms.RadioSelect, choices=TRIP_CHOICES,)
     comment = forms.CharField(widget=forms.Textarea(attrs={'rows': '4'}), required=False, help_text='Any additional info that you consider important')
+    
     class Meta:
         model = Result
         fields = '__all__'

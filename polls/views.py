@@ -61,6 +61,7 @@ class DetailsDetailView(DetailView):
     template_name = 'polls/details.html'
     context_object_name = 'details'
 
+    
 '''
 @login_required
 class details(request, id):
