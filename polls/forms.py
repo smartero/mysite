@@ -32,7 +32,7 @@ class MakeOffer(forms.ModelForm):
         model = Result
         fields = '__all__'
 
-class Reserve(forms.Form):
+class Reserve(forms.ModelForm):
     class Meta:
         model = Reservation
-        fields = '__all__'
+        fields = ['seats']
