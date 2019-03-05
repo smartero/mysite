@@ -3,12 +3,13 @@ from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.contrib.auth import views as auth_views, authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from .forms import UserRegister, EditProfile, EditAvatar, MakeOffer
+from .forms import (
+    UserRegister, EditProfile, EditAvatar, 
+    MakeOffer, Reserve, )
 from .models import Result, Profile
 from django.views.generic.edit import FormView, CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
 from django.contrib.auth.models import User
-from django.core.paginator import Paginator
 from django.core.exceptions import ValidationError
 
 def index(request):
@@ -57,16 +58,18 @@ class SearchListView(ListView):
     context_object_name = 'results'
 
 
-class DetailsDetailView(FormMixin, DetailView):
+class DetailsDetailView(DetailView):
     model = Result
     template_name = 'polls/details.html'
-    context_object_name = 'details'
+    context_object_name = 'details'   
 
-    def get(self, request, *args, **kwargs):
+@login_required
+def reserve(request):
+    if request.method == 'POST':
         pass
-
-    def post(self,request, *args, **kwargs):
-        self.form = 
+    else:
+        form = Reserve()
+    return render(request, 'polls/reserve.html', {'form': form})
 
 @login_required
 def make_offer(request):
