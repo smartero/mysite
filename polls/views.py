@@ -57,7 +57,6 @@ class SearchListView(ListView):
     template_name = 'polls/search.html'
     context_object_name = 'results'
 
-
 class DetailsDetailView(DetailView):
     model = Result
     template_name = 'polls/details.html'
