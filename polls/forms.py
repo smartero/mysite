@@ -33,7 +33,7 @@ class MakeOffer(forms.ModelForm):
         fields = '__all__'
 
 class Reserve(forms.ModelForm):
-    seats = forms.IntegerField(label="Seats", min_value=1, max_value=4)
+    seats = forms.IntegerField(label='', min_value=1, max_value=4)
     class Meta:
         model = Reservation
         fields = ['seats']

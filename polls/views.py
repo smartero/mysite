@@ -60,12 +60,21 @@ class SearchListView(ListView):
 class DetailsDetailView(DetailView):
     model = Result
     template_name = 'polls/details.html'
-    context_object_name = 'details'   
+    context_object_name = 'details'
+
+    def save_model(self, request, pk):
+        self.request.session['model'] = Result.objects.get(pk=pk)
 
 @login_required
 def reserve(request):
     if request.method == 'POST':
-        pass
+        form = Reserve(request.POST)
+        if form.is_valid():
+            result = form.save(commit=False)
+            result.trip = request.session['model']
+            result.save()
+            messages.success(request, f'Seats are successfully reserved')
+            return redirect('profile')
     else:
         form = Reserve()
     return render(request, 'polls/reserve.html', {'form': form})
