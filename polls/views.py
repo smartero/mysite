@@ -6,11 +6,12 @@ from django.contrib import messages
 from .forms import (
     UserRegister, EditProfile, EditAvatar, 
     MakeOffer, Reserve, )
-from .models import Result, Profile
+from .models import Result, Profile, Reservation
 from django.views.generic.edit import FormView, CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
+from django.shortcuts import get_object_or_404
 
 def index(request):
     if request.method == 'POST':
@@ -62,16 +63,13 @@ class DetailsDetailView(DetailView):
     template_name = 'polls/details.html'
     context_object_name = 'details'
 
-    def save_model(self, request, pk):
-        self.request.session['model'] = Result.objects.get(pk=pk)
-
 @login_required
 def reserve(request):
     if request.method == 'POST':
         form = Reserve(request.POST)
         if form.is_valid():
             result = form.save(commit=False)
-            result.trip = request.session['model']
+            result.trip.id = request.session['result']
             result.save()
             messages.success(request, f'Seats are successfully reserved')
             return redirect('profile')
