@@ -58,10 +58,23 @@ class SearchListView(ListView):
     template_name = 'polls/search.html'
     context_object_name = 'results'
 
-class DetailsDetailView(DetailView):
-    model = Result
-    template_name = 'polls/details.html'
-    context_object_name = 'details'
+@login_required
+def details(request, pk):
+    if request.method == 'POST':
+        form = Reserve(request.POST)
+        if form.is_valid:
+            form.save()
+            messages.success(request, f'Successfully reserved')
+            return redirect('profile')
+    else:
+        details = Result.objects.get(pk=pk)
+        form = Reserve()
+        context = {
+            'details': details,
+            'form': form
+        }
+    return render(request, 'polls/details', context)
+
 
 @login_required
 def reserve(request):
