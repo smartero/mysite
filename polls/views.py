@@ -61,14 +61,17 @@ class SearchListView(ListView):
 @login_required
 def details(request, pk):
     if request.method == 'POST':
-        if form.is_valid:
-            form.save()
-            messages.success(request, f'Successfully reserved')
-            return redirect('profile')
+        result = Result.objects.get(pk=pk)
+        profile = Profile.objects.get(user=request.user)
+        result.passengers = profile
+        result.seats -= 1
+        result.save()
+        messages.success(request, f'Successfully reserved')
+        return redirect('profile')
     else:
-        details = Result.objects.get(pk=pk)
+        result = Result.objects.get(pk=pk)
         context = {
-            'details': details
+            'details': result
         }
     return render(request, 'polls/details.html', context)
 
