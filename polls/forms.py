@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
-from .models import Profile, Result, Reservation
+from .models import Profile, Result
 
 class UserRegister(UserCreationForm):
     # create additional form, in () "required" by default is True
@@ -31,9 +31,3 @@ class MakeOffer(forms.ModelForm):
     class Meta:
         model = Result
         fields = '__all__'
-
-class Reserve(forms.ModelForm):
-    seats = forms.IntegerField(label='', min_value=1, max_value=4)
-    class Meta:
-        model = Reservation
-        fields = ['seats']

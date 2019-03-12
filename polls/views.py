@@ -5,10 +5,10 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .forms import (
     UserRegister, EditProfile, EditAvatar, 
-    MakeOffer, Reserve, )
-from .models import Result, Profile, Reservation
+    MakeOffer, )
+from .models import Result, Profile
 from django.views.generic.edit import FormView, CreateView, UpdateView, DeleteView
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from django.shortcuts import get_object_or_404
@@ -61,34 +61,16 @@ class SearchListView(ListView):
 @login_required
 def details(request, pk):
     if request.method == 'POST':
-        form = Reserve(request.POST)
         if form.is_valid:
             form.save()
             messages.success(request, f'Successfully reserved')
             return redirect('profile')
     else:
         details = Result.objects.get(pk=pk)
-        form = Reserve()
         context = {
-            'details': details,
-            'form': form
+            'details': details
         }
-    return render(request, 'polls/details', context)
-
-
-@login_required
-def reserve(request):
-    if request.method == 'POST':
-        form = Reserve(request.POST)
-        if form.is_valid():
-            result = form.save(commit=False)
-            result.trip.id = request.session['result']
-            result.save()
-            messages.success(request, f'Seats are successfully reserved')
-            return redirect('profile')
-    else:
-        form = Reserve()
-    return render(request, 'polls/reserve.html', {'form': form})
+    return render(request, 'polls/details.html', context)
 
 @login_required
 def make_offer(request):

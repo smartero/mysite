@@ -37,15 +37,3 @@ class Result(models.Model):
 
     def __str__(self):
         return f'{self.title} {self.dep_date} {self.dep_address} - {self.arr_address}, {self.seats} {self.comment}'
-
-class Reservation(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    seats = models.IntegerField()
-    trip = models.ForeignKey(Result, on_delete=models.CASCADE)
-    created_date = models.DateField(auto_now_add=True)
-
-    class Meta:
-        ordering = ['-created_date']
-        
-    def __str__(self):
-        return f'{self.user} {self.seats} {self.trip} {self.created_date}'

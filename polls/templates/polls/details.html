@@ -54,6 +54,7 @@
         {% endif %}
     </tbody>
 </table>
-<a class="btn btn-primary" href="{% url 'reserve' %}" role="button">Reserve</a>
-
+<form action="{% url 'details' %}" method="post">
+    <button type='submit' class="btn btn-primary">Reserve</button>
+</form>
 {% endblock %}
