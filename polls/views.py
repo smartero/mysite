@@ -38,7 +38,7 @@ def register(request):
 def profile(request):
     user = request.user
     driver = Result.objects.filter(user=user)
-    passenger = Result.objects.get(passengers=Profile.objects.filter(user=user))
+    passenger = Result.objects.filter(passengers=Profile.objects.filter(user=user).first())
     context = {
         'driver': driver,
         'passenger': passenger
@@ -62,9 +62,9 @@ class SearchListView(ListView):
 def details(request, pk):
     details = Result.objects.get(pk=pk)
     if request.method == 'POST':
-        user = User.objects.get(user=request.user)
+        user = User.objects.get(username=request.user)
         profile = Profile.objects.get(user=user)
-        details.passengers = profile
+        details.passengers.add(profile) # add value to ManyToManyField
         details.seats -= 1
         details.save()
         messages.success(request, f'Successfully reserved')
