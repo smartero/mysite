@@ -67,6 +67,7 @@ tbody tr:hover{
   </thead>
   {% for result in results %}
   <tbody>
+    {% if result.seats > 0 %}
     <tr>
       <td>{{ result.dep_address }}</td>
       <td>{{ result.arr_address }}</td>
@@ -76,6 +77,7 @@ tbody tr:hover{
       <td id="avatar"><img class="img-thumbnail float-left" id="avatar" src="{{ result.user.profile.avatar.url }}" alt=""/></td>
       <td><a href="{% url 'details' result.pk %}">Details</a></td>
     </tr>
+    {% endif %}
   </tbody>
   {% endfor %}
 </table>

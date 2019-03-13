@@ -38,7 +38,7 @@ def register(request):
 def profile(request):
     user = request.user
     driver = Result.objects.filter(user=user)
-    passenger = Result.objects.filter(passengers=Profile.objects.filter(user=user).first())
+    passenger = Result.objects.get(passengers=Profile.objects.filter(user=user))
     context = {
         'driver': driver,
         'passenger': passenger
@@ -60,20 +60,17 @@ class SearchListView(ListView):
 
 @login_required
 def details(request, pk):
+    details = Result.objects.get(pk=pk)
     if request.method == 'POST':
-        result = Result.objects.get(pk=pk)
-        profile = Profile.objects.get(user=request.user)
-        result.passengers = profile
-        result.seats -= 1
-        result.save()
+        user = User.objects.get(user=request.user)
+        profile = Profile.objects.get(user=user)
+        details.passengers = profile
+        details.seats -= 1
+        details.save()
         messages.success(request, f'Successfully reserved')
         return redirect('profile')
-    else:
-        result = Result.objects.get(pk=pk)
-        context = {
-            'details': result
-        }
-    return render(request, 'polls/details.html', context)
+    return render(request, 'polls/details.html', {'details': details})    
+    
 
 @login_required
 def make_offer(request):

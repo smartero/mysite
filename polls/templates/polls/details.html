@@ -44,17 +44,18 @@
             <td><i class="material-icons">done</i> </td>
             <td>Auto-confirmation</td>
         </tr>
-        {% if details.passengers == 'NULL' %}
+        
         <tr>
             {% for passenger in details.passengers.all %}
             <td><i class="material-icons">face</i></td>
             <td>{{ passenger }}</td>     
             {% endfor %}
         </tr>
-        {% endif %}
+        
     </tbody>
 </table>
-<form action="{% url 'details' %}" method="post">
+<form action="{% url 'details' details.pk %}" method="post">
+    {% csrf_token %}
     <button type='submit' class="btn btn-primary">Reserve</button>
 </form>
 {% endblock %}
