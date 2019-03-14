@@ -47,50 +47,54 @@
         </ul>
         <div class="tab-content">
             <div class="tab-pane fade show active" id="driver" role="tabpanel" aria-labelledby="driver-tab">
-            <table class="table">
+            <table class="table table-responsive">
                 <thead>
                     <tr>
-                        <th scope="col">Created</th>
                         <th scope="col">From</th>
                         <th scope="col">To</th>
                         <th scope="col">Date</th>
                         <th scope="col">Free seats</th>
+                        <th scope="col">Created</th>
                     </tr>
                 </thead>
                 <tbody>
                     {% for driver in driver %}
                     <tr id="driver_list">
-                        <td>{{ driver.created_date }}</td>
                         <td>{{ driver.dep_address }}</td>
                         <td>{{ driver.arr_address }}</td>
                         <td>{{ driver.dep_date }}</td>
-                        <td>{{ driver.seats }}/</td>
+                        <td>{{ driver.seats }}</td>
+                        <td>{{ driver.created_date }}</td>
                     </tr>
                     {% endfor %}
                 </tbody>
             </table>    
             </div>
+            
             <div class="tab-pane fade" id="passenger" role="tabpanel" aria-labelledby="passenger-tab">
-            <table class="table">
+                    
+                <table class="table table-responsive">
                 <thead>
                     <tr>
-                        <th scope="col">Driver</th>
                         <th scope="col">From</th>
                         <th scope="col">To</th>
                         <th scope="col">Date</th>
+                        <th scope="col">Driver</th>
                     </tr>
                 </thead>
                 <tbody>
+                    <tr>
                     {% for passenger in passenger %}
-                        <td>{{ passenger.user }}</td>
                         <td>{{ passenger.dep_address }}</td>
                         <td>{{ passenger.arr_address }}</td>
                         <td>{{ passenger.dep_date }}</td>
+                        <td>{{ passenger.user }}</td>
                     </tr>
                     {% endfor %}
                 </tbody>
             </table>              
             </div>
+            
         </div>
     </div>
 </div>
