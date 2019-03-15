@@ -11,6 +11,7 @@ urlpatterns = [
     path('make_offer/', polls_views.make_offer, name='make_offer'),
     path('register/', polls_views.register, name='register'),
     path('profile/', polls_views.profile, name='profile'),
+    path('profile/<int:pk>/', polls_views.profile, name='profile'),
     path('search/', SearchListView.as_view(), name='search'),
     path('details/<int:pk>/', polls_views.details, name='details'),
     path('login/', auth_views.LoginView.as_view(template_name='polls/login.html'), name='login'),

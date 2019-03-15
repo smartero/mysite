@@ -35,10 +35,12 @@ def register(request):
     return render(request, 'polls/register.html', {'form': form})
 
 @login_required
-def profile(request):
+def profile(request, pk=None):
     user = request.user
     driver = Result.objects.filter(user=user)
     passenger = Result.objects.filter(passengers=Profile.objects.filter(user=user).first())
+    if request.method == 'POST':
+        pass
     context = {
         'driver': driver,
         'passenger': passenger
