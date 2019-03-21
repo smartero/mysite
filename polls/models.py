@@ -2,13 +2,17 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
 from django.db.models import DateTimeField
+from django.urls import reverse 
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     avatar = models.ImageField(default='/avatar_pics/default.jpg', upload_to='avatar_pics')
     
     def __str__(self):
-        return f'{self.user.username} Profile'
+        return f'{self.user.username}'
+    
+    def get_absolute_url(self):
+        return reverse('profile', kwargs={'pk': self.pk})
     
 class Car(models.Model):
     car_model = models.CharField(max_length=20)

@@ -12,6 +12,7 @@ from django.views.generic import ListView
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from django.shortcuts import get_object_or_404
+from django.urls import reverse_lazy
 
 def index(request):
     if request.method == 'POST':
@@ -72,7 +73,10 @@ def details(request, pk):
         messages.success(request, f'Successfully reserved')
         return redirect('profile')
     return render(request, 'polls/details.html', {'details': details})    
-    
+
+class TripDelete(DeleteView):
+    model = Result
+    success_url = reverse_lazy('profile')
 
 @login_required
 def make_offer(request):
