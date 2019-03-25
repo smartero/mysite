@@ -10,15 +10,16 @@ from .models import Result, Profile
 from django.views.generic.edit import FormView, CreateView, UpdateView, DeleteView
 from django.views.generic import ListView
 from django.contrib.auth.models import User
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.core.exceptions import ValidationError
 from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
 
 def index(request):
-    if request.method == 'POST':
-        messages.info(request, f'Please login')
-        return redirect('login')
-    return render(request, 'polls/index.html')
+    if request.user.is_authenticated:
+        return redirect('search')
+    else:
+        return render(request, 'polls/index.html')
 
 def register(request):
     if request.method == 'POST':    
@@ -34,6 +35,7 @@ def register(request):
     else:
         form = UserRegister()
     return render(request, 'polls/register.html', {'form': form})
+
 
 @login_required
 def profile(request, pk=None):
@@ -74,10 +76,10 @@ def details(request, pk):
         return redirect('profile')
     return render(request, 'polls/details.html', {'details': details})    
 
-class TripDelete(DeleteView):
+class ResultDeleteView(LoginRequiredMixin, DeleteView):
     model = Result
     success_url = reverse_lazy('profile')
-
+   
 @login_required
 def make_offer(request):
     if request.method == 'POST':
@@ -97,12 +99,11 @@ def edit_profile(request):
     if request.method == 'POST':
         p_form = EditProfile(request.POST)
         a_form = EditAvatar(request.POST)
-        context = {
-        'p_form': p_form,
-        'a_form': a_form
-        }
-        messages.success(request, f'Changes are saved')
-        return redirect('profile')
+        if p_form.is_valid and a_form.is_valid:
+            p_form.save()
+            a_form.save()
+            messages.success(request, f'Changes are saved')
+            return redirect('profile')
     else:
         p_form = EditProfile()
         a_form = EditAvatar()

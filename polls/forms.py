@@ -12,12 +12,14 @@ class UserRegister(UserCreationForm):
         fields = ['username', 'email', 'password1', 'password2']
 
 class EditProfile(forms.ModelForm):
+
     email = forms.EmailField(required=False)
     class Meta:
         model = User
-        fields = ['username', 'email']
+        fields = ['email']
 
 class EditAvatar(forms.ModelForm):
+    avatar = forms.ImageField(required=False)
     class Meta:
         model = Profile
         fields = ['avatar']
