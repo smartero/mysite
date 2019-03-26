@@ -36,7 +36,6 @@ def register(request):
         form = UserRegister()
     return render(request, 'polls/register.html', {'form': form})
 
-
 @login_required
 def profile(request, pk=None):
     user = request.user
