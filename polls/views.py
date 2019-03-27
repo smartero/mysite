@@ -4,10 +4,16 @@ from django.contrib.auth import views as auth_views, authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .forms import (
-    UserRegister, EditProfile, EditAvatar, 
+    UserRegister, 
+    UserUpdate, 
+    AvatarUpdate, 
     MakeOffer, )
 from .models import Result, Profile
-from django.views.generic.edit import FormView, CreateView, UpdateView, DeleteView
+from django.views.generic.edit import (
+    FormView, 
+    CreateView, 
+    UpdateView, 
+    DeleteView, )
 from django.views.generic import ListView
 from django.contrib.auth.models import User
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
@@ -40,7 +46,9 @@ def register(request):
 def profile(request, pk=None):
     user = request.user
     driver = Result.objects.filter(user=user)
-    passenger = Result.objects.filter(passengers=Profile.objects.filter(user=user).first())
+    passenger = Result.objects.filter(
+        passengers=Profile.objects.filter(user=user).first()
+        )
     if request.method == 'POST':
         pass
     context = {
@@ -96,18 +104,20 @@ def make_offer(request):
 @login_required
 def edit_profile(request):
     if request.method == 'POST':
-        p_form = EditProfile(request.POST)
-        a_form = EditAvatar(request.POST)
-        if p_form.is_valid and a_form.is_valid:
-            p_form.save()
+        u_form = UserUpdate(request.POST, instance = request.user)
+        a_form = AvatarUpdate(request.POST, 
+                              request.FILES, 
+                              instance = request.user.profile)
+        if u_form.is_valid and a_form.is_valid:
+            u_form.save()
             a_form.save()
             messages.success(request, f'Changes are saved')
             return redirect('profile')
     else:
-        p_form = EditProfile()
-        a_form = EditAvatar()
-        context = {
-            'p_form': p_form,
-            'a_form': a_form
-        }
-        return render(request, 'polls/edit_profile.html', context)
+        u_form = UserUpdate(instance = request.user)
+        a_form = AvatarUpdate()
+    context = {
+        'u_form': u_form,
+        'a_form': a_form
+    }
+    return render(request, 'polls/edit_profile.html', context)

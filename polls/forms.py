@@ -11,19 +11,17 @@ class UserRegister(UserCreationForm):
         model = User
         fields = ['username', 'email', 'password1', 'password2']
 
-class EditProfile(forms.ModelForm):
-
+class UserUpdate(forms.ModelForm):
     email = forms.EmailField(required=False)
+
     class Meta:
         model = User
-        fields = ['email']
+        fields = ['username', 'email']
 
-class EditAvatar(forms.ModelForm):
-    avatar = forms.ImageField(required=False)
+class AvatarUpdate(forms.ModelForm):
     class Meta:
         model = Profile
         fields = ['avatar']
-
  
 class MakeOffer(forms.ModelForm):
     seats = forms.IntegerField(label='Seats', min_value=1, max_value=4, initial=1, help_text='Free seats available for reservation')
