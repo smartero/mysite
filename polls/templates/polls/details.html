@@ -29,15 +29,14 @@
             <td>Left {{ details.seats }} seats</td>
         </tr>
         <tr>
-            <td></td>
-            <td>
-                {{ details.user }}
-            </td>
+            <td>{{ details.user }}</td>
+            <td><img class="img-thumbnail" id="avatar" src="{{ details.user.profile.avatar.url }}" alt=""/></td>
+        <tr>
             <td>
                 {{ details.comments }}
             </td>
             <td>
-                <img class="img-thumbnail" id="avatar" src="{{ details.user.profile.avatar.url }}" alt=""/>
+                
             </td>
         </tr>
         <tr>

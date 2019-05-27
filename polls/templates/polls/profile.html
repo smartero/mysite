@@ -84,6 +84,7 @@
                         <th scope="col">To</th>
                         <th scope="col">Date</th>
                         <th scope="col">Driver</th>
+                        <th scope="col"></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -93,6 +94,9 @@
                         <td>{{ passenger.arr_address }}</td>
                         <td>{{ passenger.dep_date }}</td>
                         <td>{{ passenger.user }}</td>
+                        <td><a href="{% url 'reserve-delete' driver.id %}">
+                            delete
+                        </a></td>
                     </tr>
                     {% endfor %}
                 </tbody>

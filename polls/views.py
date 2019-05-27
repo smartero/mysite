@@ -46,11 +46,7 @@ def register(request):
 def profile(request, pk=None):
     user = request.user
     driver = Result.objects.filter(user=user)
-    passenger = Result.objects.filter(
-        passengers=Profile.objects.filter(user=user).first()
-        )
-    if request.method == 'POST':
-        pass
+    passenger = Result.objects.filter(passengers=Profile.objects.filter(user=user).first())
     context = {
         'driver': driver,
         'passenger': passenger
@@ -87,6 +83,12 @@ class ResultDeleteView(LoginRequiredMixin, DeleteView):
     model = Result
     success_url = reverse_lazy('profile')
    
+def passenger_delete(request, pk):
+    passenger = request.user.profile
+    trip = Result.objects.filter(pk=pk)
+    
+
+
 @login_required
 def make_offer(request):
     if request.method == 'POST':
