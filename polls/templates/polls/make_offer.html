@@ -17,7 +17,7 @@
 </script>
 <form action="{% url 'make_offer' %}" method='post' autocomplete="off" class="form-group">
   {% csrf_token %}
-  <h2>Offer a trip</h2>
+  <h2>Plan a trip</h2>
   {{ form.title|as_crispy_field }}
   <div class="form-row">
     <div class="form-group col-md-6 mb-0">
