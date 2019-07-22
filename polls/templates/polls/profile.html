@@ -66,9 +66,7 @@
                         <td>{{ driver.dep_date }}</td>
                         <td>{{ driver.seats }}</td>
                         <td>{{ driver.created_date }}</td>
-                        <td><a href="{% url 'result-delete' driver.id %}">
-                                delete
-                        </a></td>
+                     
                     </tr>
                     {% endfor %}
                 </tbody>
@@ -94,9 +92,7 @@
                         <td>{{ passenger.arr_address }}</td>
                         <td>{{ passenger.dep_date }}</td>
                         <td>{{ passenger.user }}</td>
-                        <td><a href="{% url 'reserve-delete' driver.id %}">
-                            delete
-                        </a></td>
+                     
                     </tr>
                     {% endfor %}
                 </tbody>
@@ -107,7 +103,7 @@
     </div>
 </div>
 
-      <!-- Modal -->
+      
       <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content">

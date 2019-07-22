@@ -4,7 +4,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.auth.views import LoginView
 from polls import views as polls_views
-from polls.views import SearchListView, ResultDeleteView
+from polls.views import SearchListView
 
 urlpatterns = [
     path('', polls_views.index, name='index'),
@@ -14,7 +14,7 @@ urlpatterns = [
     path('profile/<int:pk>/', polls_views.profile, name='profile'),
     path('search/', SearchListView.as_view(), name='search'),
     path('details/<int:pk>/', polls_views.details, name='details'),
-    path('result/<int:pk>/delete/', ResultDeleteView.as_view(), name='result-delete'),
+   
     path('login/', auth_views.LoginView.as_view(template_name='polls/login.html'), name='login'),
     path('logout/', auth_views.LogoutView.as_view(template_name='polls/logout.html'), name='logout'),
     path('change_password/', auth_views.PasswordChangeView.as_view(template_name='change-password.html')),

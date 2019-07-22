@@ -43,7 +43,7 @@ def register(request):
     return render(request, 'polls/register.html', {'form': form})
 
 @login_required
-def profile(request, pk=None):
+def profile(request):
     user = request.user
     driver = Result.objects.filter(user=user)
     passenger = Result.objects.filter(passengers=Profile.objects.filter(user=user).first())
@@ -79,14 +79,6 @@ def details(request, pk):
         return render(request, 'polls/profile.html')
     return render(request, 'polls/details.html', {'details': details})    
 
-class ResultDeleteView(LoginRequiredMixin, DeleteView):
-    model = Result
-    success_url = reverse_lazy('profile')
-   
-def passenger_delete(request, pk):
-    passenger = request.user.profile
-    trip = Result.objects.filter(pk=pk)
-    
 
 
 @login_required
