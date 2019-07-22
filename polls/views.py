@@ -76,7 +76,7 @@ def details(request, pk):
         details.seats -= 1
         details.save()
         messages.success(request, f'Successfully reserved')
-        return redirect('profile')
+        return render(request, 'polls/profile.html')
     return render(request, 'polls/details.html', {'details': details})    
 
 class ResultDeleteView(LoginRequiredMixin, DeleteView):
