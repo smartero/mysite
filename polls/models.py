@@ -29,7 +29,6 @@ class Result(models.Model):
     arr_address = models.CharField(max_length=300, help_text='City or district')
     # blank=True if you wish to permit empty values in forms, as the null parameter only affects database storage
     comment = models.CharField(max_length=200, blank=True, null=True)
-    #car = models.ForeignKey(Car, on_delete=models.CASCADE, related_name='car')
     seats = models.IntegerField()
     passengers = models.ManyToManyField(Profile, blank=True)
     car = models.ForeignKey(Car, on_delete=models.SET_NULL, blank=True, null=True)

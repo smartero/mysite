@@ -12,14 +12,10 @@ from .models import Result, Profile
 from django.views.generic.edit import (
     FormView, 
     CreateView, 
-    UpdateView, 
-    DeleteView, )
+    UpdateView, )
 from django.views.generic import ListView
 from django.contrib.auth.models import User
-from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.core.exceptions import ValidationError
-from django.shortcuts import get_object_or_404
-from django.urls import reverse_lazy
 
 def index(request):
     if request.user.is_authenticated:
@@ -78,8 +74,6 @@ def details(request, pk):
         messages.success(request, f'Successfully reserved')
         return render(request, 'polls/profile.html')
     return render(request, 'polls/details.html', {'details': details})    
-
-
 
 @login_required
 def make_offer(request):

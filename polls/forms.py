@@ -24,9 +24,9 @@ class AvatarUpdate(forms.ModelForm):
         fields = ['avatar']
  
 class MakeOffer(forms.ModelForm):
-    seats = forms.IntegerField(label='Seats', min_value=1, max_value=4, initial=1, help_text='Free seats available for reservation')
+    seats = forms.IntegerField(label='Seats', min_value=1, max_value=7, initial=1, help_text='Free seats available for reservation')
     #trip_type = forms.ChoiceField(widget=forms.RadioSelect, choices=TRIP_CHOICES,)
-    comment = forms.CharField(widget=forms.Textarea(attrs={'rows': '4'}), required=False, help_text='Any additional info that you consider important')
+    comment = forms.CharField(widget=forms.Textarea(attrs={'rows': '3'}), required=False, help_text='Any additional info that you consider important')
     
     class Meta:
         model = Result
